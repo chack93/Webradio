@@ -11,6 +11,11 @@
 		43D641FF1DFCA08C0019508C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43D641FE1DFCA08C0019508C /* Assets.xcassets */; };
 		43D642021DFCA08C0019508C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43D642001DFCA08C0019508C /* MainMenu.xib */; };
 		43D6420D1DFCA08C0019508C /* WebradioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D6420C1DFCA08C0019508C /* WebradioTests.swift */; };
+		43D6421C1DFCA1720019508C /* WebradioWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D6421A1DFCA1720019508C /* WebradioWindowController.swift */; };
+		43D6421D1DFCA1720019508C /* WebradioWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43D6421B1DFCA1720019508C /* WebradioWindowController.xib */; };
+		43D6421F1DFCA48E0019508C /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D6421E1DFCA48E0019508C /* Station.swift */; };
+		43D642221DFCAFF90019508C /* GenreListHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D642211DFCAFF90019508C /* GenreListHandler.swift */; };
+		43D642241DFCBE0D0019508C /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D642231DFCBE0D0019508C /* Debug.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +37,11 @@
 		43D642081DFCA08C0019508C /* WebradioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebradioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D6420C1DFCA08C0019508C /* WebradioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebradioTests.swift; sourceTree = "<group>"; };
 		43D6420E1DFCA08C0019508C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43D6421A1DFCA1720019508C /* WebradioWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebradioWindowController.swift; path = View/WebradioWindowController.swift; sourceTree = "<group>"; };
+		43D6421B1DFCA1720019508C /* WebradioWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WebradioWindowController.xib; path = View/WebradioWindowController.xib; sourceTree = "<group>"; };
+		43D6421E1DFCA48E0019508C /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Station.swift; path = Model/Station.swift; sourceTree = "<group>"; };
+		43D642211DFCAFF90019508C /* GenreListHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenreListHandler.swift; path = Model/GenreListHandler.swift; sourceTree = "<group>"; };
+		43D642231DFCBE0D0019508C /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Debug.swift; path = Controller/Debug.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +83,9 @@
 		43D641FB1DFCA08C0019508C /* Webradio */ = {
 			isa = PBXGroup;
 			children = (
+				43D642191DFCA1120019508C /* Controller */,
+				43D642181DFCA10C0019508C /* View */,
+				43D642171DFCA1060019508C /* Model */,
 				43D641FC1DFCA08C0019508C /* AppDelegate.swift */,
 				43D641FE1DFCA08C0019508C /* Assets.xcassets */,
 				43D642001DFCA08C0019508C /* MainMenu.xib */,
@@ -88,6 +101,32 @@
 				43D6420E1DFCA08C0019508C /* Info.plist */,
 			);
 			path = WebradioTests;
+			sourceTree = "<group>";
+		};
+		43D642171DFCA1060019508C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				43D6421E1DFCA48E0019508C /* Station.swift */,
+				43D642211DFCAFF90019508C /* GenreListHandler.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		43D642181DFCA10C0019508C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				43D6421A1DFCA1720019508C /* WebradioWindowController.swift */,
+				43D6421B1DFCA1720019508C /* WebradioWindowController.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		43D642191DFCA1120019508C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				43D642231DFCBE0D0019508C /* Debug.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +214,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43D6421D1DFCA1720019508C /* WebradioWindowController.xib in Resources */,
 				43D641FF1DFCA08C0019508C /* Assets.xcassets in Resources */,
 				43D642021DFCA08C0019508C /* MainMenu.xib in Resources */,
 			);
@@ -194,6 +234,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43D642221DFCAFF90019508C /* GenreListHandler.swift in Sources */,
+				43D642241DFCBE0D0019508C /* Debug.swift in Sources */,
+				43D6421C1DFCA1720019508C /* WebradioWindowController.swift in Sources */,
+				43D6421F1DFCA48E0019508C /* Station.swift in Sources */,
 				43D641FD1DFCA08C0019508C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,17 +11,16 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    @IBOutlet weak var window: NSWindow!
+    var webradioWindowController: WebradioWindowController?
 
-
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        let webradioWindowController = WebradioWindowController()
+        webradioWindowController.showWindow(self)
+        self.webradioWindowController = webradioWindowController
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+        
     }
-
-
 }
 
