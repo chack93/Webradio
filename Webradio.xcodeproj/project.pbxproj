@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43407D1B1DFDC2A90013DB0C /* StationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43407D1A1DFDC2A90013DB0C /* StationList.swift */; };
 		43D641FD1DFCA08C0019508C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D641FC1DFCA08C0019508C /* AppDelegate.swift */; };
 		43D641FF1DFCA08C0019508C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43D641FE1DFCA08C0019508C /* Assets.xcassets */; };
 		43D642021DFCA08C0019508C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43D642001DFCA08C0019508C /* MainMenu.xib */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		43407D1A1DFDC2A90013DB0C /* StationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StationList.swift; path = Model/StationList.swift; sourceTree = "<group>"; };
 		43D641F91DFCA08C0019508C /* Webradio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Webradio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D641FC1DFCA08C0019508C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43D641FE1DFCA08C0019508C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 			children = (
 				43D6421E1DFCA48E0019508C /* Station.swift */,
 				43D642211DFCAFF90019508C /* GenreListHandler.swift */,
+				43407D1A1DFDC2A90013DB0C /* StationList.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				43D6421C1DFCA1720019508C /* WebradioWindowController.swift in Sources */,
 				43D6421F1DFCA48E0019508C /* Station.swift in Sources */,
 				43D641FD1DFCA08C0019508C /* AppDelegate.swift in Sources */,
+				43407D1B1DFDC2A90013DB0C /* StationList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +445,7 @@
 				43D642131DFCA08C0019508C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		43D642141DFCA08C0019508C /* Build configuration list for PBXNativeTarget "WebradioTests" */ = {
 			isa = XCConfigurationList;
@@ -449,6 +454,7 @@
 				43D642161DFCA08C0019508C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

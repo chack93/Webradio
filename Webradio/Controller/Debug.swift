@@ -29,9 +29,34 @@ public class Debug {
      */
     public class func log(level: ErrorLvl, file: String, msg: String) {
         let timestamp = NSDate.init().description
-        debugPrint(timestamp +
-                   " <" + level.rawValue +
-                   "> File: " + file +
-                   ": " + msg);
+        let formatedMsg = timestamp +
+            " <" + level.rawValue +
+            "> File: " + file +
+            ": " + msg
+        debugPrint(formatedMsg);
+        
+        if (level == .Debug) {
+            return
+        }
+        
+        // Add to error log
+        let fileManager = FileManager.default
+        let errorLogPath = NSSearchPathForDirectoriesInDomains(
+            .applicationSupportDirectory,
+            .userDomainMask, true).first?.appending("error.log")
+        
+        if (errorLogPath != nil) {
+            if (!fileManager.fileExists(atPath: errorLogPath!)) {
+                fileManager.createFile(atPath: errorLogPath!,
+                                       contents: nil,
+                                       attributes: nil)
+            }
+            do {
+                let filecontent = try String.init(contentsOfFile: errorLogPath!) + "\n" + formatedMsg
+                try filecontent.write(toFile: errorLogPath!, atomically: true, encoding: String.Encoding.utf8)
+            } catch {
+                
+            }
+        }
     }
 }
