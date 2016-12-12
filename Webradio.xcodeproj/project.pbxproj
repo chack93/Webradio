@@ -17,6 +17,7 @@
 		43D6421F1DFCA48E0019508C /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D6421E1DFCA48E0019508C /* Station.swift */; };
 		43D642221DFCAFF90019508C /* GenreListHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D642211DFCAFF90019508C /* GenreListHandler.swift */; };
 		43D642241DFCBE0D0019508C /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D642231DFCBE0D0019508C /* Debug.swift */; };
+		43E1FB571DFF3A370074E47D /* testfiles in Resources */ = {isa = PBXBuildFile; fileRef = 43E1FB561DFF3A370074E47D /* testfiles */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		43D6421E1DFCA48E0019508C /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Station.swift; path = Model/Station.swift; sourceTree = "<group>"; };
 		43D642211DFCAFF90019508C /* GenreListHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenreListHandler.swift; path = Model/GenreListHandler.swift; sourceTree = "<group>"; };
 		43D642231DFCBE0D0019508C /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Debug.swift; path = Controller/Debug.swift; sourceTree = "<group>"; };
+		43E1FB561DFF3A370074E47D /* testfiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = testfiles; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		43D6420B1DFCA08C0019508C /* WebradioTests */ = {
 			isa = PBXGroup;
 			children = (
+				43E1FB561DFF3A370074E47D /* testfiles */,
 				43D6420C1DFCA08C0019508C /* WebradioTests.swift */,
 				43D6420E1DFCA08C0019508C /* Info.plist */,
 			);
@@ -227,6 +230,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43E1FB571DFF3A370074E47D /* testfiles in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
