@@ -42,7 +42,7 @@ public class Station: NSCoder {
         }
     }
     public var image: NSImage = NSImage.init(named: "DefaultStationIcon")!
-    public var streams: [NSURL] = []
+    public var streams: [URL] = []
     public var text: String = ""
     public var favorite: Bool = false
     public var scheduleItems: [ScheduleItem] = [ScheduleItem]()
@@ -54,7 +54,7 @@ public class Station: NSCoder {
     public init(title: String,
                 genre: String,
                 image: NSImage,
-                streams: [NSURL],
+                streams: [URL],
                 text: String,
                 favorite: Bool,
                 scheduleItems: [ScheduleItem]) {
@@ -79,7 +79,7 @@ public class Station: NSCoder {
         if let image = decoder.decodeObject(forKey: "image") as? NSImage {
             self.image = image
         }
-        if let streams = decoder.decodeObject(forKey: "streams") as? [NSURL] {
+        if let streams = decoder.decodeObject(forKey: "streams") as? [URL] {
             self.streams = streams
         }
         if let text = decoder.decodeObject(forKey: "text") as? String {
