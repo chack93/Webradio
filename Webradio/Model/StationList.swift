@@ -76,7 +76,7 @@ public class StationList {
     Will handle simple files as one station with multiple streams.
     Will add new station for each beginning extended information in stream
     */
-    public func stationFrom(m3u: URL) -> [Station]? {
+    public class func stationFrom(m3u: URL) -> [Station]? {
         var stations: [Station] = [Station]()
         var newStation: Station? = nil
         do {

@@ -51,21 +51,21 @@ public class Station: NSCoder {
         super.init()
     }
     
-    public init(title: String,
-                genre: String,
-                image: NSImage,
+    public init(title: String?,
+                genre: String?,
+                image: NSImage?,
                 streams: [URL],
-                text: String,
-                favorite: Bool,
-                scheduleItems: [ScheduleItem]) {
+                text: String?,
+                favorite: Bool?,
+                scheduleItems: [ScheduleItem]?) {
         super.init()
-        self.title = title
-        self.genre = genre
-        self.image = image
+        self.title = title != nil ? title! : ""
+        self.genre = genre != nil ? genre! : ""
+        self.image = image != nil ? image! : NSImage.init(named: "DefaultStationIcon")!
         self.streams = streams
-        self.text = text
-        self.favorite = favorite
-        self.scheduleItems = scheduleItems
+        self.text = text != nil ? text! : ""
+        self.favorite = favorite != nil ? favorite! : false
+        self.scheduleItems = scheduleItems != nil ? scheduleItems! : [ScheduleItem]()
     }
     
     public required convenience init(coder decoder: NSCoder) {
