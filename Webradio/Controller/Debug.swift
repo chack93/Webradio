@@ -11,6 +11,7 @@ import Foundation
 public enum ErrorLvl: String{
     case Debug = "DEBUG"
     case Error = "ERROR"
+    case Test = "TEST"
 }
 
 public class Debug {
