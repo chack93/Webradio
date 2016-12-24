@@ -8,12 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		43407D1B1DFDC2A90013DB0C /* StationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43407D1A1DFDC2A90013DB0C /* StationList.swift */; };
+		434A12571E0F1F3E0093200F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A12551E0F1F3E0093200F /* MainViewController.swift */; };
+		43C0634F1E06EB5900BBF964 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C0634E1E06EB5900BBF964 /* GradientView.swift */; };
+		43C063511E06F8EC00BBF964 /* CustomSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C063501E06F8EC00BBF964 /* CustomSliderCell.swift */; };
+		43C063541E0709C700BBF964 /* StationListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C063521E0709C700BBF964 /* StationListItem.swift */; };
+		43C063551E0709C700BBF964 /* StationListItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43C063531E0709C700BBF964 /* StationListItem.xib */; };
 		43D641FD1DFCA08C0019508C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D641FC1DFCA08C0019508C /* AppDelegate.swift */; };
 		43D641FF1DFCA08C0019508C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43D641FE1DFCA08C0019508C /* Assets.xcassets */; };
 		43D642021DFCA08C0019508C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43D642001DFCA08C0019508C /* MainMenu.xib */; };
 		43D6420D1DFCA08C0019508C /* WebradioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D6420C1DFCA08C0019508C /* WebradioTests.swift */; };
-		43D6421C1DFCA1720019508C /* WebradioWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D6421A1DFCA1720019508C /* WebradioWindowController.swift */; };
-		43D6421D1DFCA1720019508C /* WebradioWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43D6421B1DFCA1720019508C /* WebradioWindowController.xib */; };
+		43D6421C1DFCA1720019508C /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D6421A1DFCA1720019508C /* MainWindowController.swift */; };
+		43D6421D1DFCA1720019508C /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43D6421B1DFCA1720019508C /* MainWindow.xib */; };
 		43D6421F1DFCA48E0019508C /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D6421E1DFCA48E0019508C /* Station.swift */; };
 		43D642221DFCAFF90019508C /* GenreListHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D642211DFCAFF90019508C /* GenreListHandler.swift */; };
 		43D642241DFCBE0D0019508C /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D642231DFCBE0D0019508C /* Debug.swift */; };
@@ -31,7 +36,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		43407D1A1DFDC2A90013DB0C /* StationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StationList.swift; path = Model/StationList.swift; sourceTree = "<group>"; };
+		43407D1A1DFDC2A90013DB0C /* StationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationList.swift; sourceTree = "<group>"; };
+		434A12551E0F1F3E0093200F /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		43C0634E1E06EB5900BBF964 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		43C063501E06F8EC00BBF964 /* CustomSliderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSliderCell.swift; sourceTree = "<group>"; };
+		43C063521E0709C700BBF964 /* StationListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationListItem.swift; sourceTree = "<group>"; };
+		43C063531E0709C700BBF964 /* StationListItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StationListItem.xib; sourceTree = "<group>"; };
 		43D641F91DFCA08C0019508C /* Webradio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Webradio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D641FC1DFCA08C0019508C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43D641FE1DFCA08C0019508C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -40,11 +50,11 @@
 		43D642081DFCA08C0019508C /* WebradioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebradioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D6420C1DFCA08C0019508C /* WebradioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebradioTests.swift; sourceTree = "<group>"; };
 		43D6420E1DFCA08C0019508C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		43D6421A1DFCA1720019508C /* WebradioWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebradioWindowController.swift; path = View/WebradioWindowController.swift; sourceTree = "<group>"; };
-		43D6421B1DFCA1720019508C /* WebradioWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WebradioWindowController.xib; path = View/WebradioWindowController.xib; sourceTree = "<group>"; };
-		43D6421E1DFCA48E0019508C /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Station.swift; path = Model/Station.swift; sourceTree = "<group>"; };
-		43D642211DFCAFF90019508C /* GenreListHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenreListHandler.swift; path = Model/GenreListHandler.swift; sourceTree = "<group>"; };
-		43D642231DFCBE0D0019508C /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Debug.swift; path = Controller/Debug.swift; sourceTree = "<group>"; };
+		43D6421A1DFCA1720019508C /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		43D6421B1DFCA1720019508C /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		43D6421E1DFCA48E0019508C /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
+		43D642211DFCAFF90019508C /* GenreListHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreListHandler.swift; sourceTree = "<group>"; };
+		43D642231DFCBE0D0019508C /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		43E1FB561DFF3A370074E47D /* testfiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = testfiles; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,8 +102,8 @@
 				43D642171DFCA1060019508C /* Model */,
 				43D641FC1DFCA08C0019508C /* AppDelegate.swift */,
 				43D641FE1DFCA08C0019508C /* Assets.xcassets */,
-				43D642001DFCA08C0019508C /* MainMenu.xib */,
 				43D642031DFCA08C0019508C /* Info.plist */,
+				43D642001DFCA08C0019508C /* MainMenu.xib */,
 			);
 			path = Webradio;
 			sourceTree = "<group>";
@@ -115,24 +125,29 @@
 				43D642211DFCAFF90019508C /* GenreListHandler.swift */,
 				43407D1A1DFDC2A90013DB0C /* StationList.swift */,
 			);
-			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		43D642181DFCA10C0019508C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				43D6421A1DFCA1720019508C /* WebradioWindowController.swift */,
-				43D6421B1DFCA1720019508C /* WebradioWindowController.xib */,
+				43C063521E0709C700BBF964 /* StationListItem.swift */,
+				43C063531E0709C700BBF964 /* StationListItem.xib */,
+				43D6421B1DFCA1720019508C /* MainWindow.xib */,
+				43C0634E1E06EB5900BBF964 /* GradientView.swift */,
+				43C063501E06F8EC00BBF964 /* CustomSliderCell.swift */,
 			);
-			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		43D642191DFCA1120019508C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				43D642231DFCBE0D0019508C /* Debug.swift */,
+				434A12551E0F1F3E0093200F /* MainViewController.swift */,
+				43D6421A1DFCA1720019508C /* MainWindowController.swift */,
 			);
-			name = Controller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,7 +195,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Christian Hackl";
 				TargetAttributes = {
 					43D641F81DFCA08C0019508C = {
@@ -220,7 +235,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43D6421D1DFCA1720019508C /* WebradioWindowController.xib in Resources */,
+				43D6421D1DFCA1720019508C /* MainWindow.xib in Resources */,
+				43C063551E0709C700BBF964 /* StationListItem.xib in Resources */,
 				43D641FF1DFCA08C0019508C /* Assets.xcassets in Resources */,
 				43D642021DFCA08C0019508C /* MainMenu.xib in Resources */,
 			);
@@ -241,10 +257,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				434A12571E0F1F3E0093200F /* MainViewController.swift in Sources */,
 				43D642221DFCAFF90019508C /* GenreListHandler.swift in Sources */,
 				43D642241DFCBE0D0019508C /* Debug.swift in Sources */,
-				43D6421C1DFCA1720019508C /* WebradioWindowController.swift in Sources */,
+				43D6421C1DFCA1720019508C /* MainWindowController.swift in Sources */,
+				43C063541E0709C700BBF964 /* StationListItem.swift in Sources */,
+				43C063511E06F8EC00BBF964 /* CustomSliderCell.swift in Sources */,
 				43D6421F1DFCA48E0019508C /* Station.swift in Sources */,
+				43C0634F1E06EB5900BBF964 /* GradientView.swift in Sources */,
 				43D641FD1DFCA08C0019508C /* AppDelegate.swift in Sources */,
 				43407D1B1DFDC2A90013DB0C /* StationList.swift in Sources */,
 			);
@@ -298,6 +318,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -347,6 +368,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

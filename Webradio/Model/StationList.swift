@@ -18,6 +18,17 @@ public class StationList {
     
     /// List of all saved stations
     public var stations: [Station] = [Station]()
+    public var favoriteStations: [Station] {
+        get {
+            var returnValue = [Station]()
+            for station in self.stations {
+                if station.favorite {
+                    returnValue.append(station)
+                }
+            }
+            return returnValue
+        }
+    }
     
     // - MARK: Init/Deinit
     

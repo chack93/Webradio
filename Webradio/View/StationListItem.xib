@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="StationListItem" customModule="Webradio" customModuleProvider="target"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="160" height="48"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="evv-rn-Iej" customClass="GradientView" customModule="Webradio" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="160" height="48"/>
+                    <subviews>
+                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Tv-cP-oFA">
+                            <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="48" id="so1-Yn-bqt"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="48" id="t1N-Uj-2Ab"/>
+                            </constraints>
+                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="lqh-kL-qtK"/>
+                            <connections>
+                                <binding destination="-2" name="value" keyPath="stationImage" id="y6b-Um-HXx"/>
+                            </connections>
+                        </imageView>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfE-Qe-YNi">
+                            <rect key="frame" x="54" y="4" width="100" height="17"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="17" id="gV6-Ad-6od"/>
+                            </constraints>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Genre" id="fT1-28-4od">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                            <connections>
+                                <binding destination="-2" name="value" keyPath="stationGenre" id="cAW-Hy-2Q2"/>
+                            </connections>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ajc-1F-Bw6">
+                            <rect key="frame" x="54" y="27" width="100" height="17"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="17" id="9vi-et-0ra"/>
+                            </constraints>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Station" id="GAc-kw-lhq">
+                                <font key="font" metaFont="systemBold"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                            <connections>
+                                <binding destination="-2" name="value" keyPath="stationTitle" id="jhT-ty-aZG"/>
+                            </connections>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="2Tv-cP-oFA" firstAttribute="leading" secondItem="evv-rn-Iej" secondAttribute="leading" id="3C5-TR-DBj"/>
+                        <constraint firstAttribute="bottom" secondItem="2Tv-cP-oFA" secondAttribute="bottom" id="4w1-gj-5Zm"/>
+                        <constraint firstAttribute="trailing" secondItem="mfE-Qe-YNi" secondAttribute="trailing" constant="8" id="JZz-6v-wSv"/>
+                        <constraint firstItem="2Tv-cP-oFA" firstAttribute="top" secondItem="evv-rn-Iej" secondAttribute="top" id="SdW-kH-H5J"/>
+                        <constraint firstItem="mfE-Qe-YNi" firstAttribute="leading" secondItem="2Tv-cP-oFA" secondAttribute="trailing" constant="8" id="gky-1O-dHb"/>
+                        <constraint firstAttribute="bottom" secondItem="mfE-Qe-YNi" secondAttribute="bottom" constant="4" id="gxX-68-RC8"/>
+                        <constraint firstItem="Ajc-1F-Bw6" firstAttribute="top" secondItem="evv-rn-Iej" secondAttribute="top" constant="4" id="poN-R1-1uK"/>
+                        <constraint firstItem="Ajc-1F-Bw6" firstAttribute="leading" secondItem="2Tv-cP-oFA" secondAttribute="trailing" constant="8" id="rRG-dn-Z0e"/>
+                        <constraint firstAttribute="trailing" secondItem="Ajc-1F-Bw6" secondAttribute="trailing" constant="8" id="rq5-ah-8Lb"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="start">
+                            <color key="value" white="0.85999999999999999" alpha="1" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="end">
+                            <color key="value" white="0.93000000000000005" alpha="1" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="angle">
+                            <integer key="value" value="180"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="evv-rn-Iej" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="TLX-Wd-Zej"/>
+                <constraint firstAttribute="trailing" secondItem="evv-rn-Iej" secondAttribute="trailing" id="bNc-as-qxB"/>
+                <constraint firstAttribute="bottom" secondItem="evv-rn-Iej" secondAttribute="bottom" id="irD-jl-AdO"/>
+                <constraint firstItem="evv-rn-Iej" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="zYZ-H1-Vtx"/>
+            </constraints>
+        </customView>
+        <collectionViewItem id="aAI-af-Nwc" customClass="StationListItem" customModule="Webradio" customModuleProvider="target">
+            <connections>
+                <outlet property="gradientBackground" destination="evv-rn-Iej" id="5Gk-7J-ArH"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="agA-J8-x5F"/>
+            </connections>
+        </collectionViewItem>
+        <userDefaultsController representsSharedInstance="YES" id="9C0-ek-SAM"/>
+    </objects>
+</document>

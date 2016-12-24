@@ -22,6 +22,8 @@ class WebradioTests: XCTestCase {
         super.tearDown()
     }
     
+    // - MARK: helper functions 
+    
     func playlistPathOf(file: String) -> URL? {
         let testfileFolderName = "testfiles"
         let unitTestBundle = Bundle(for: NSClassFromString("WebradioTests.WebradioTests")!)
@@ -40,20 +42,28 @@ class WebradioTests: XCTestCase {
     func compare(newStations: [Station], correctStations: [Station], file: String) {
         for i in 0 ..< correctStations.count {
             XCTAssertEqual(correctStations[i].title, newStations[i].title, "Station title of: " + i.description + " element not equal")
+            
             XCTAssertEqual(correctStations[i].genre, newStations[i].genre, "Station genre of: " + i.description + " element not equal")
+            
             XCTAssertEqual(correctStations[i].text, newStations[i].text, "Station text of: " + i.description + " element not equal")
+            
             XCTAssertEqual(correctStations[i].favorite, newStations[i].favorite, "Station favorite of: " + i.description + " element not equal")
+            
             for j in 0 ..< correctStations[i].streams.count {
                 XCTAssertEqual(correctStations[i].streams[j], newStations[i].streams[j], "Station streams of: " + i.description + " item: " + j.description + " element not equal")
             }
             
             for j in 0 ..< correctStations[i].scheduleItems.count {
                 XCTAssertEqual(correctStations[i].scheduleItems[j].start, newStations[i].scheduleItems[j].start, "Station start of: " + i.description + " item: " + j.description + " element not equal")
+                
                 XCTAssertEqual(correctStations[i].scheduleItems[j].end, newStations[i].scheduleItems[j].end, "Station end of: " + i.description + " item: " + j.description + " element not equal")
+                
                 XCTAssertEqual(correctStations[i].scheduleItems[j].text, newStations[i].scheduleItems[j].text, "Station text of: " + i.description + " item: " + i.description + " element not equal")
             }
         }
     }
+    
+    // MARK: - M3U import tests
     
     func testOpenSimpleM3U() {
         let correctStations: [Station] = [

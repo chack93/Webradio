@@ -1,5 +1,5 @@
 //
-//  WebradioWindowController.swift
+//  MainWindowController.swift
 //  Webradio
 //
 //  Created by Christian Hackl on 10/12/2016.
@@ -8,13 +8,11 @@
 
 import Cocoa
 
-class WebradioWindowController: NSWindowController {
-
-    override var windowNibName: String? {
-        return "WebradioWindowController"
-    }
+class MainWindowController: NSWindowController {
     
-    @IBOutlet var mainView: NSView?
+    override var windowNibName: String? {
+        return "MainWindow"
+    }
     
     override func windowDidLoad() {
         super.windowDidLoad()

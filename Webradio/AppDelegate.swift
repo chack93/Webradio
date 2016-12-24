@@ -11,12 +11,12 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    var webradioWindowController: WebradioWindowController?
+    var mainWindowController: MainWindowController?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        let webradioWindowController = WebradioWindowController()
-        webradioWindowController.showWindow(self)
-        self.webradioWindowController = webradioWindowController
+        let mainWindowController = MainWindowController()
+        mainWindowController.showWindow(self)
+        self.mainWindowController = mainWindowController
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
