@@ -20,8 +20,6 @@ class MainWindowController: NSWindowController {
     
     override func windowDidLoad() {
         super.windowDidLoad()
-
-        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     }
     
     @IBAction func editStreams(sender: NSButton) {
@@ -32,7 +30,16 @@ class MainWindowController: NSWindowController {
                 if response == NSModalResponseOK {
                     let editedStreams = self.streamsEditWC!.streamItems
                     viewController.focusedStationItem!.stationObject!.streams = editedStreams
-                    viewController.updateView()
+                    // Select default stream in popup button
+                    if let stationObj = viewController.focusedStationItem?.stationObject {
+                        for i in 0..<stationObj.streams.count {
+                            if stationObj.streams[i].isDefault {
+                                viewController.focusedStreamIndex = i
+                            }
+                        }
+                    } else {
+                        Debug.log(level: .Error, file: self.classDescription.className, msg: "focused station item or stationObject missing")
+                    }
                 }
                 self.window!.endSheet(self.streamsEditWC!.window!)
                 

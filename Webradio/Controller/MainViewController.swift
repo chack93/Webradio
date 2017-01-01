@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import AVFoundation
 
 class MainViewController: NSViewController, NSCollectionViewDataSource {
     // MARK: - Outlets
@@ -15,39 +14,49 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
     @IBOutlet weak var stationListScrollView: NSScrollView!
     @IBOutlet weak var streamSelectArray: NSArrayController!
     
-    @IBOutlet weak var stationDetailView: NSView!
     // MARK: - Properties
-    var stationList = StationList.init()
+    var stationListManager = StationListManager.init()
     dynamic var focusedStationItem: StationListItem? {
         didSet {
-            self.updateView()
+            // Select default stream in popup button
+            if let stationObj = self.focusedStationItem?.stationObject {
+                for i in 0..<stationObj.streams.count {
+                    if stationObj.streams[i].isDefault {
+                        self.focusedStreamIndex = i
+                    }
+                }
+            }
         }
     }
     dynamic var focusedStreamIndex: Int = 0
-    dynamic var playingStation: Station?
+    dynamic var volumeLevel: Float = 1.0 {
+        didSet {
+            streamPlayer.volumeLevel = volumeLevel
+        }
+    }
     var focusFirstStationItem = true
-    var player: AVPlayer?
+    var streamPlayer = StreamPlayer()
     
-    // MARK: - ViewController functions
+    // MARK: - ViewController properties/functions
     override var nibName: String? {
         return "MainView"
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+        // Test data
         let streamItem = StreamItem.init(stream: URL.init(string: "http://stream.srg-ssr.ch/m/rsj/aacp_96")!, title: "AAC")
         let streamItem2 = StreamItem.init(stream: URL.init(string: "http://stream.srg-ssr.ch/m/rsj/mp3_128")!, title: "MP3")
         let streamItem3 = StreamItem.init(stream: URL.init(string: "http://example.org")!, title: "example")
         let testStation = Station.init(title: "Hello", genre: nil, image: nil, streams: [streamItem, streamItem2], text: "Description", favorite: true, scheduleItems: nil)
         let testStation2 = Station.init(title: "xxx", genre: "yyy", image: NSImage.init(named: "PauseIcon"), streams: [streamItem3], text: "Description2", favorite: false, scheduleItems: nil)
-        self.stationList.stations.append(testStation)
-        self.stationList.stations.append(testStation2)
-        self.stationList.stations.append(testStation2)
-        self.stationList.stations.append(testStation2)
-        self.stationList.stations.append(testStation2)
-        self.stationList.stations.append(testStation2)
-        self.stationList.stations.append(testStation2)
+        self.stationListManager.stations.append(testStation)
+        self.stationListManager.stations.append(testStation2)
+        self.stationListManager.stations.append(testStation2)
+        self.stationListManager.stations.append(testStation2)
+        self.stationListManager.stations.append(testStation2)
+        self.stationListManager.stations.append(testStation2)
+        self.stationListManager.stations.append(testStation2)
     }
     
     override func viewWillLayout() {
@@ -61,26 +70,16 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
         self.stationListCollection.minItemSize.height = 48
     }
     
-    func updateView() {
-        if let stationObj = self.focusedStationItem?.stationObject {
-            for i in 0..<stationObj.streams.count {
-                if stationObj.streams[i].isDefault {
-                    self.focusedStreamIndex = i
-                }
-            }
-        }
-    }
-    
     // MARK: - NSCollectionViewDataSource protocol
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        return stationList.stations.count
+        return stationListManager.stations.count
     }
     
     public func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
         let item = collectionView.makeItem(withIdentifier: "StationListItem", for: indexPath)
         guard let stationListItem = item as? StationListItem else {return item}
         
-        stationListItem.stationObject = self.stationList.stations[indexPath.item]
+        stationListItem.stationObject = self.stationListManager.stations[indexPath.item]
         stationListItem.clickCallback = self.navigateStationList
         
         // focus first item on startup
@@ -89,11 +88,10 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
             self.focusFirstStationItem = false
             focusedStationItem = stationListItem
         }
-        
         return item
     }
     
-    // MARK: - Navigation function
+    // MARK: - Station list navigation
     func navigateStationList(_ event: NSEvent, selectedItem: StationListItem) {
         switch (event.type) {
         case .leftMouseUp:
@@ -102,6 +100,15 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
             }
             selectedItem.isFocused = true
             self.focusedStationItem = selectedItem
+            
+            guard let stationObj = self.focusedStationItem?.stationObject else {
+                Debug.log(level: .Error, file: self.classDescription.className, msg: "Focused station item object missing")
+                return
+            }
+            self.streamPlayer.station = stationObj
+            if event.clickCount > 1 {
+                self.streamPlayer.play()
+            }
             break
         default:
             break
@@ -110,24 +117,15 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
     
     // MARK: - IBActions
     @IBAction func playPause(_ sender: NSButton) {
-        if self.player == nil {
-            self.player = AVPlayer.init()
-        }
         if !(sender.objectValue as! Bool) {
-            self.player!.pause()
+            self.streamPlayer.pause()
         } else {
-            if let streams = self.focusedStationItem?.stationObject?.streams {
-                for stream in streams {
-                    if stream.isDefault {
-                        if let streamURL = stream.stream {
-                            let playerItem = AVPlayerItem.init(url: streamURL)
-                            self.player?.replaceCurrentItem(with: playerItem)
-                        }
-                        break
-                    }
-                }
+            guard let stationObj = self.focusedStationItem?.stationObject else {
+                Debug.log(level: .Error, file: self.classDescription.className, msg: "Focused station item or containing object missing")
+                return
             }
-            self.player!.play()
+            self.streamPlayer.station = stationObj
+            self.streamPlayer.play()
         }
     }
     

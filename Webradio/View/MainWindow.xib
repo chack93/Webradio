@@ -42,12 +42,13 @@ IA
                                 </buttonCell>
                                 <connections>
                                     <action selector="playPause:" target="HlQ-Wu-ujW" id="Yeg-ih-EgI"/>
+                                    <binding destination="HlQ-Wu-ujW" name="value" keyPath="self.streamPlayer.isPlaying" id="Irg-Jp-M6k"/>
                                 </connections>
                             </button>
                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gIn-j9-VUH">
                                 <rect key="frame" x="50" y="9" width="124" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="100" tickMarkPosition="above" sliderType="linear" id="hyb-wl-fp1" customClass="CustomSliderCell" customModule="Webradio">
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="hyb-wl-fp1" customClass="CustomSliderCell" customModule="Webradio">
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="color" keyPath="leftColor">
                                             <color key="value" red="0.31372549019607843" green="0.31372549019607843" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -63,6 +64,13 @@ IA
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </sliderCell>
+                                <connections>
+                                    <binding destination="HlQ-Wu-ujW" name="value" keyPath="self.volumeLevel" id="QPZ-m4-V85">
+                                        <dictionary key="options">
+                                            <bool key="NSValidatesImmediately" value="YES"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
                             </slider>
                         </subviews>
                         <constraints>
@@ -114,7 +122,7 @@ IA
                                             <rect key="frame" x="-100" y="-100" width="158" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="NW4-Zu-gdN">
+                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="NW4-Zu-gdN">
                                             <rect key="frame" x="143" y="1" width="16" height="339"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -362,7 +370,6 @@ IA
         </window>
         <viewController id="HlQ-Wu-ujW" customClass="MainViewController" customModule="Webradio" customModuleProvider="target">
             <connections>
-                <outlet property="stationDetailView" destination="JBQ-0e-3yw" id="oET-GX-3Rr"/>
                 <outlet property="stationListCollection" destination="ilm-hh-l3n" id="aDP-a8-frh"/>
                 <outlet property="stationListScrollView" destination="F8f-53-emQ" id="WsF-GO-ngf"/>
                 <outlet property="streamSelectArray" destination="xDt-PE-9rt" id="03R-FV-2xZ"/>

@@ -1,5 +1,5 @@
 //
-//   StationLibrary.swift
+//  StationListManager.swift
 //  Webradio
 //
 //  Created by Christian Hackl on 11/12/2016.
@@ -9,7 +9,7 @@
 import Foundation
 import AppKit
 
-public class StationList {
+public class StationListManager: NSObject {
     // - MARK: constants
     
     private let stationListFileName = "stationList.wrl"
@@ -33,7 +33,8 @@ public class StationList {
     // - MARK: Init/Deinit
     
     /// Loads previously saved stations
-    public init() {
+    override public init() {
+        super.init()
         let fileManager = FileManager.default
         let stationListPath = NSSearchPathForDirectoriesInDomains(
             .applicationSupportDirectory,
@@ -50,10 +51,10 @@ public class StationList {
             if let stationList = NSKeyedUnarchiver.unarchiveObject(withFile: stationListPath!) as? [Station] {
                 self.stations = stationList
             } else {
-                Debug.log(level: .Error, file: "StationList", msg: "Unable to unarchive station list")
+                Debug.log(level: .Error, file: self.classDescription.className, msg: "Unable to unarchive station list")
             }
         } else {
-            Debug.log(level: .Error, file: "StationList", msg: "Unable to get the path to the station list")
+            Debug.log(level: .Error, file: self.classDescription.className, msg: "Unable to get the path to the station list")
         }
     }
     
@@ -73,7 +74,7 @@ public class StationList {
             }
             NSKeyedArchiver.archiveRootObject(self.stations, toFile: stationListPath!)
         } else {
-            Debug.log(level: .Error, file: "StationList", msg: "Unable to get the path to the station list")
+            Debug.log(level: .Error, file: self.classDescription.className, msg: "Unable to get the path to the station list")
         }
     }
     
@@ -107,7 +108,7 @@ public class StationList {
                         // append created station to list & create new one
                         if newStation != nil {
                             stations.append(newStation!)
-                            Debug.log(level: .Debug, file: "StationList", msg: "Created new Station: title=" + newStation!.title + " streams=" + newStation!.streams.description)
+                            Debug.log(level: .Debug, file: self.classDescription().className, msg: "Created new Station: title=" + newStation!.title + " streams=" + newStation!.streams.description)
                             newStation = nil
                         }
                         newStation = Station.init()
@@ -127,12 +128,12 @@ public class StationList {
             // append item in simple m3u or last in extended playlist
             if newStation != nil && newStation!.streams.count > 0 {
                 stations.append(newStation!)
-                Debug.log(level: .Debug, file: "StationList", msg: "Created new Station: title=" + newStation!.title + " streams=" + newStation!.streams.description)
+                Debug.log(level: .Debug, file: self.classDescription().className, msg: "Created new Station: title=" + newStation!.title + " streams=" + newStation!.streams.description)
             } else {
-                Debug.log(level: .Error, file: "StationList", msg: "Given m3u playlist is empty")
+                Debug.log(level: .Error, file: self.classDescription().className, msg: "Given m3u playlist is empty")
             }
         } catch {
-            Debug.log(level: .Error, file: "StationList", msg: "Unable to read content of m3u file, " + error.localizedDescription)
+            Debug.log(level: .Error, file: self.classDescription().className, msg: "Unable to read content of m3u file, " + error.localizedDescription)
             return nil
         }
         return stations

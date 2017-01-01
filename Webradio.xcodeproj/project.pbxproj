@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		43407D1B1DFDC2A90013DB0C /* StationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43407D1A1DFDC2A90013DB0C /* StationList.swift */; };
+		43407D1B1DFDC2A90013DB0C /* StationListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43407D1A1DFDC2A90013DB0C /* StationListManager.swift */; };
+		4347609C1E1948AD001F98A7 /* StreamPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4347609B1E1948AD001F98A7 /* StreamPlayer.swift */; };
 		43497F2B1E11BB340060BD5C /* StreamDetailWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43497F291E11BB330060BD5C /* StreamDetailWindowController.swift */; };
 		43497F2C1E11BB340060BD5C /* StreamDetailWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43497F2A1E11BB330060BD5C /* StreamDetailWindow.xib */; };
 		434A12571E0F1F3E0093200F /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A12551E0F1F3E0093200F /* MainWindowController.swift */; };
@@ -38,7 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		43407D1A1DFDC2A90013DB0C /* StationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationList.swift; sourceTree = "<group>"; };
+		43407D1A1DFDC2A90013DB0C /* StationListManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationListManager.swift; sourceTree = "<group>"; };
+		4347609B1E1948AD001F98A7 /* StreamPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamPlayer.swift; sourceTree = "<group>"; };
 		43497F291E11BB330060BD5C /* StreamDetailWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamDetailWindowController.swift; sourceTree = "<group>"; };
 		43497F2A1E11BB330060BD5C /* StreamDetailWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StreamDetailWindow.xib; sourceTree = "<group>"; };
 		434A12551E0F1F3E0093200F /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
@@ -127,7 +129,7 @@
 			children = (
 				43D6421E1DFCA48E0019508C /* Station.swift */,
 				43D642211DFCAFF90019508C /* GenreListHandler.swift */,
-				43407D1A1DFDC2A90013DB0C /* StationList.swift */,
+				43407D1A1DFDC2A90013DB0C /* StationListManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -152,6 +154,7 @@
 				434A12551E0F1F3E0093200F /* MainWindowController.swift */,
 				43D6421A1DFCA1720019508C /* MainViewController.swift */,
 				43497F291E11BB330060BD5C /* StreamDetailWindowController.swift */,
+				4347609B1E1948AD001F98A7 /* StreamPlayer.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -274,7 +277,8 @@
 				43D6421F1DFCA48E0019508C /* Station.swift in Sources */,
 				43C0634F1E06EB5900BBF964 /* GradientView.swift in Sources */,
 				43D641FD1DFCA08C0019508C /* AppDelegate.swift in Sources */,
-				43407D1B1DFDC2A90013DB0C /* StationList.swift in Sources */,
+				4347609C1E1948AD001F98A7 /* StreamPlayer.swift in Sources */,
+				43407D1B1DFDC2A90013DB0C /* StationListManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

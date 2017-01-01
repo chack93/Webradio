@@ -22,5 +22,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
         
     }
+    
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        if (flag) {
+            return false
+        } else {
+            let window = NSApplication.shared().windows.first as NSWindow?
+            if (window != nil) {
+                window?.makeKeyAndOrderFront(self)
+            }
+            return true
+        }
+    }
 }
 

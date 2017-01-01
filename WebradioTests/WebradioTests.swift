@@ -10,7 +10,7 @@ import XCTest
 @testable import Webradio
 
 class WebradioTests: XCTestCase {
-    let stationListClass = StationList.init()
+    let stationListClass = StationListManager.init()
     
     override func setUp() {
         super.setUp()
@@ -78,7 +78,7 @@ class WebradioTests: XCTestCase {
         let fileName = "tf_simple.m3u"
         
         if let playlistPath = self.playlistPathOf(file: fileName) {
-            let newStations = StationList.stationFrom(m3u: playlistPath)
+            let newStations = StationListManager.stationFrom(m3u: playlistPath)
             XCTAssertNotNil(newStations, "created station is empty")
             self.compare(newStations: newStations!, correctStations: correctStations, file: fileName)
         }
@@ -101,7 +101,7 @@ class WebradioTests: XCTestCase {
         let fileName = "tf_multiple.m3u"
         
         if let playlistPath = self.playlistPathOf(file: fileName) {
-            let newStations = StationList.stationFrom(m3u: playlistPath)
+            let newStations = StationListManager.stationFrom(m3u: playlistPath)
             XCTAssertNotNil(newStations, "created station is empty")
             self.compare(newStations: newStations!, correctStations: correctStations, file: fileName)
         }
@@ -120,7 +120,7 @@ class WebradioTests: XCTestCase {
         let fileName = "tf_extended.m3u"
         
         if let playlistPath = self.playlistPathOf(file: fileName) {
-            let newStations = StationList.stationFrom(m3u: playlistPath)
+            let newStations = StationListManager.stationFrom(m3u: playlistPath)
             XCTAssertNotNil(newStations, "created station is empty")
             self.compare(newStations: newStations!, correctStations: correctStations, file: fileName)
         }
