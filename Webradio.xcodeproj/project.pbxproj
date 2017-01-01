@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		43407D1B1DFDC2A90013DB0C /* StationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43407D1A1DFDC2A90013DB0C /* StationList.swift */; };
-		434A12571E0F1F3E0093200F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A12551E0F1F3E0093200F /* MainViewController.swift */; };
+		43497F2B1E11BB340060BD5C /* StreamDetailWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43497F291E11BB330060BD5C /* StreamDetailWindowController.swift */; };
+		43497F2C1E11BB340060BD5C /* StreamDetailWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43497F2A1E11BB330060BD5C /* StreamDetailWindow.xib */; };
+		434A12571E0F1F3E0093200F /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434A12551E0F1F3E0093200F /* MainWindowController.swift */; };
 		43C0634F1E06EB5900BBF964 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C0634E1E06EB5900BBF964 /* GradientView.swift */; };
 		43C063511E06F8EC00BBF964 /* CustomSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C063501E06F8EC00BBF964 /* CustomSliderCell.swift */; };
 		43C063541E0709C700BBF964 /* StationListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C063521E0709C700BBF964 /* StationListItem.swift */; };
@@ -17,7 +19,7 @@
 		43D641FF1DFCA08C0019508C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43D641FE1DFCA08C0019508C /* Assets.xcassets */; };
 		43D642021DFCA08C0019508C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43D642001DFCA08C0019508C /* MainMenu.xib */; };
 		43D6420D1DFCA08C0019508C /* WebradioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D6420C1DFCA08C0019508C /* WebradioTests.swift */; };
-		43D6421C1DFCA1720019508C /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D6421A1DFCA1720019508C /* MainWindowController.swift */; };
+		43D6421C1DFCA1720019508C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D6421A1DFCA1720019508C /* MainViewController.swift */; };
 		43D6421D1DFCA1720019508C /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43D6421B1DFCA1720019508C /* MainWindow.xib */; };
 		43D6421F1DFCA48E0019508C /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D6421E1DFCA48E0019508C /* Station.swift */; };
 		43D642221DFCAFF90019508C /* GenreListHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D642211DFCAFF90019508C /* GenreListHandler.swift */; };
@@ -37,7 +39,9 @@
 
 /* Begin PBXFileReference section */
 		43407D1A1DFDC2A90013DB0C /* StationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationList.swift; sourceTree = "<group>"; };
-		434A12551E0F1F3E0093200F /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		43497F291E11BB330060BD5C /* StreamDetailWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamDetailWindowController.swift; sourceTree = "<group>"; };
+		43497F2A1E11BB330060BD5C /* StreamDetailWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StreamDetailWindow.xib; sourceTree = "<group>"; };
+		434A12551E0F1F3E0093200F /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		43C0634E1E06EB5900BBF964 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		43C063501E06F8EC00BBF964 /* CustomSliderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSliderCell.swift; sourceTree = "<group>"; };
 		43C063521E0709C700BBF964 /* StationListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationListItem.swift; sourceTree = "<group>"; };
@@ -50,7 +54,7 @@
 		43D642081DFCA08C0019508C /* WebradioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebradioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D6420C1DFCA08C0019508C /* WebradioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebradioTests.swift; sourceTree = "<group>"; };
 		43D6420E1DFCA08C0019508C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		43D6421A1DFCA1720019508C /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		43D6421A1DFCA1720019508C /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		43D6421B1DFCA1720019508C /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		43D6421E1DFCA48E0019508C /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		43D642211DFCAFF90019508C /* GenreListHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreListHandler.swift; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 				43D6421B1DFCA1720019508C /* MainWindow.xib */,
 				43C0634E1E06EB5900BBF964 /* GradientView.swift */,
 				43C063501E06F8EC00BBF964 /* CustomSliderCell.swift */,
+				43497F2A1E11BB330060BD5C /* StreamDetailWindow.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -144,8 +149,9 @@
 			isa = PBXGroup;
 			children = (
 				43D642231DFCBE0D0019508C /* Debug.swift */,
-				434A12551E0F1F3E0093200F /* MainViewController.swift */,
-				43D6421A1DFCA1720019508C /* MainWindowController.swift */,
+				434A12551E0F1F3E0093200F /* MainWindowController.swift */,
+				43D6421A1DFCA1720019508C /* MainViewController.swift */,
+				43497F291E11BB330060BD5C /* StreamDetailWindowController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -236,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43D6421D1DFCA1720019508C /* MainWindow.xib in Resources */,
+				43497F2C1E11BB340060BD5C /* StreamDetailWindow.xib in Resources */,
 				43C063551E0709C700BBF964 /* StationListItem.xib in Resources */,
 				43D641FF1DFCA08C0019508C /* Assets.xcassets in Resources */,
 				43D642021DFCA08C0019508C /* MainMenu.xib in Resources */,
@@ -257,11 +264,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				434A12571E0F1F3E0093200F /* MainViewController.swift in Sources */,
+				434A12571E0F1F3E0093200F /* MainWindowController.swift in Sources */,
 				43D642221DFCAFF90019508C /* GenreListHandler.swift in Sources */,
 				43D642241DFCBE0D0019508C /* Debug.swift in Sources */,
-				43D6421C1DFCA1720019508C /* MainWindowController.swift in Sources */,
+				43D6421C1DFCA1720019508C /* MainViewController.swift in Sources */,
 				43C063541E0709C700BBF964 /* StationListItem.swift in Sources */,
+				43497F2B1E11BB340060BD5C /* StreamDetailWindowController.swift in Sources */,
 				43C063511E06F8EC00BBF964 /* CustomSliderCell.swift in Sources */,
 				43D6421F1DFCA48E0019508C /* Station.swift in Sources */,
 				43C0634F1E06EB5900BBF964 /* GradientView.swift in Sources */,

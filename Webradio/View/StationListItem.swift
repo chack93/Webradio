@@ -11,22 +11,54 @@ import Cocoa
 @IBDesignable
 class StationListItem: NSCollectionViewItem {
 
-    var stationImage = NSImage.init(named: "DefaultStationIcon")
-    var stationTitle = ""
-    var stationGenre = ""
-    var isFavorite = false
-    
+    // MARK: - IBOutlets
     @IBOutlet weak var gradientBackground: GradientView!
+    
+    // MARK: - properties
+    dynamic var stationObject: Station? {
+        didSet {
+            self.setBackground()
+        }
+    }
+    var isFocused = false {
+        didSet {
+            self.setBackground()
+        }
+    }
+    var clickCallback = {(_: NSEvent, _: StationListItem) -> Void in}
+    
+    override var nibName: String? {
+        return "StationListItem"
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if self.isFavorite {
-            gradientBackground.start = NSColor.init(calibratedRed: 255/219, green: 255/201, blue: 255/96, alpha: 1.0)
-            gradientBackground.end = NSColor.init(calibratedRed: 255/238, green: 255/231, blue: 255/192, alpha: 1.0)
-        } else {
-            gradientBackground.start = NSColor.init(calibratedWhite: 0.86, alpha: 1.0)
-            gradientBackground.end = NSColor.init(calibratedWhite: 0.93, alpha: 1.0)
+    }
+    
+    // MARK: - methods
+    override func mouseUp(with event: NSEvent) {
+        self.clickCallback(event, self)
+    }
+    
+    func setBackground() {
+        if let me = stationObject {
+            if me.favorite {
+                gradientBackground.start = NSColor.init(calibratedRed: 219/255, green: 201/255, blue: 96/255, alpha: 1.0)
+                gradientBackground.end = NSColor.init(calibratedRed: 255/238, green: 255/231, blue: 255/192, alpha: 1.0)
+                if self.isFocused {
+                    gradientBackground.end = NSColor.selectedMenuItemColor.blended(withFraction: 0.2, of: NSColor.white)!
+                }
+            } else {
+                if self.isFocused {
+                    gradientBackground.start = NSColor.selectedMenuItemColor
+                    gradientBackground.end = NSColor.selectedMenuItemColor.blended(withFraction: 0.2, of: NSColor.white)!
+                } else {
+                    gradientBackground.start = NSColor.init(calibratedWhite: 0.86, alpha: 1.0)
+                    gradientBackground.end = NSColor.init(calibratedWhite: 0.93, alpha: 1.0)
+                }
+            }
         }
+        self.gradientBackground.needsDisplay = true
     }
     
 }

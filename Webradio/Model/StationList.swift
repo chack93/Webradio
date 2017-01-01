@@ -80,13 +80,13 @@ public class StationList {
     // - MARK: Import Station from playlists
     
     /** Creates a station object from a m3u playlist
-    - parameters:
-        - m3u: path to m3u file
-    - returns: A station list, or nil if the playlist can not be read
+     - parameters:
+     - m3u: path to m3u file
+     - returns: A station list, or nil if the playlist can not be read
      
-    Will handle simple files as one station with multiple streams.
-    Will add new station for each beginning extended information in stream
-    */
+     Will handle simple files as one station with multiple streams.
+     Will add new station for each beginning extended information in stream
+     */
     public class func stationFrom(m3u: URL) -> [Station]? {
         var stations: [Station] = [Station]()
         var newStation: Station? = nil
@@ -119,7 +119,8 @@ public class StationList {
                         newStation = Station.init()
                     }
                     if let stream = URL.init(string: line) {
-                        newStation!.streams.append(stream)
+                        let streamItem = StreamItem.init(stream: stream, title: stream.lastPathComponent)
+                        newStation!.streams.append(streamItem)
                     }
                 }
             }

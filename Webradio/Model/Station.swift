@@ -10,9 +10,9 @@ import Foundation
 import AppKit
 
 public class ScheduleItem: NSCoder {
-    public var start: String = ""
-    public var end: String = ""
-    public var text: String = ""
+    dynamic public var start: String = ""
+    dynamic public var end: String = ""
+    dynamic public var text: String = ""
     
     public required convenience init(coder decoder: NSCoder) {
         self.init()
@@ -34,18 +34,57 @@ public class ScheduleItem: NSCoder {
     }
 }
 
+public class StreamItem: NSCoder {
+    dynamic public var stream: URL?
+    dynamic public var title: String = ""
+    dynamic public var isDefault: Bool = false
+    
+    public required convenience init(coder decoder: NSCoder) {
+        self.init()
+        if let stream = decoder.decodeObject(forKey: "stream") as? URL {
+            self.stream = stream
+        }
+        if let title = decoder.decodeObject(forKey: "title") as? String {
+            self.title = title
+        }
+        if let isDefault = decoder.decodeObject(forKey: "isDefault") as? Bool {
+            self.isDefault = isDefault
+        }
+    }
+    
+    public convenience override init() {
+        self.init(stream: nil, title: "")
+    }
+    
+    public convenience init(stream: URL?) {
+        self.init(stream: stream, title: "")
+    }
+    
+    public init(stream: URL?, title: String) {
+        self.stream = stream
+        self.title = title
+        self.isDefault = false
+    }
+    
+    func encode(with coder: NSCoder) {
+        coder.encode(self.stream, forKey: "stream")
+        coder.encode(self.title, forKey: "title")
+        coder.encode(self.isDefault, forKey: "isDefault")
+    }
+}
+
 public class Station: NSCoder {
-    public var title: String = ""
-    public var genre: String = "" {
+    dynamic public var title: String = ""
+    dynamic public var genre: String = "" {
         didSet {
             
         }
     }
-    public var image: NSImage = NSImage.init(named: "DefaultStationIcon")!
-    public var streams: [URL] = []
-    public var text: String = ""
-    public var favorite: Bool = false
-    public var scheduleItems: [ScheduleItem] = [ScheduleItem]()
+    dynamic public var image: NSImage = NSImage.init(named: "DefaultStationIcon")!
+    dynamic public var streams: [StreamItem] = []
+    dynamic public var text: String = ""
+    dynamic public var favorite: Bool = false
+    dynamic public var scheduleItems: [ScheduleItem] = [ScheduleItem]()
     
     public override init() {
         super.init()
@@ -54,7 +93,7 @@ public class Station: NSCoder {
     public init(title: String?,
                 genre: String?,
                 image: NSImage?,
-                streams: [URL],
+                streams: [StreamItem],
                 text: String?,
                 favorite: Bool?,
                 scheduleItems: [ScheduleItem]?) {
@@ -62,6 +101,20 @@ public class Station: NSCoder {
         self.title = title != nil ? title! : ""
         self.genre = genre != nil ? genre! : ""
         self.image = image != nil ? image! : NSImage.init(named: "DefaultStationIcon")!
+        // Set default stream if not defined
+        var defaultStreamSet = false
+        for stream in streams {
+            if stream.isDefault && !defaultStreamSet {
+                defaultStreamSet = true
+            } else {
+                stream.isDefault = false
+            }
+        }
+        if !defaultStreamSet {  // Set first as default
+            if let first = streams.first {
+                first.isDefault = true
+            }
+        }
         self.streams = streams
         self.text = text != nil ? text! : ""
         self.favorite = favorite != nil ? favorite! : false
@@ -79,7 +132,7 @@ public class Station: NSCoder {
         if let image = decoder.decodeObject(forKey: "image") as? NSImage {
             self.image = image
         }
-        if let streams = decoder.decodeObject(forKey: "streams") as? [URL] {
+        if let streams = decoder.decodeObject(forKey: "streams") as? [StreamItem] {
             self.streams = streams
         }
         if let text = decoder.decodeObject(forKey: "text") as? String {

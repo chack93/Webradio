@@ -11,7 +11,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
             <rect key="frame" x="0.0" y="0.0" width="160" height="48"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="evv-rn-Iej" customClass="GradientView" customModule="Webradio" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="160" height="48"/>
@@ -24,7 +24,7 @@
                             </constraints>
                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="lqh-kL-qtK"/>
                             <connections>
-                                <binding destination="-2" name="value" keyPath="stationImage" id="y6b-Um-HXx"/>
+                                <binding destination="aAI-af-Nwc" name="value" keyPath="stationObject.image" id="zXA-3J-V9X"/>
                             </connections>
                         </imageView>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfE-Qe-YNi">
@@ -38,7 +38,7 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                             <connections>
-                                <binding destination="-2" name="value" keyPath="stationGenre" id="cAW-Hy-2Q2"/>
+                                <binding destination="aAI-af-Nwc" name="value" keyPath="stationObject.genre" id="ydd-pw-8jg"/>
                             </connections>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ajc-1F-Bw6">
@@ -52,7 +52,7 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                             <connections>
-                                <binding destination="-2" name="value" keyPath="stationTitle" id="jhT-ty-aZG"/>
+                                <binding destination="aAI-af-Nwc" name="value" keyPath="stationObject.title" id="dcm-hh-P5X"/>
                             </connections>
                         </textField>
                     </subviews>
@@ -87,7 +87,7 @@
                 <constraint firstItem="evv-rn-Iej" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="zYZ-H1-Vtx"/>
             </constraints>
         </customView>
-        <collectionViewItem id="aAI-af-Nwc" customClass="StationListItem" customModule="Webradio" customModuleProvider="target">
+        <collectionViewItem nibName="StationListItem" id="aAI-af-Nwc" customClass="StationListItem" customModule="Webradio" customModuleProvider="target">
             <connections>
                 <outlet property="gradientBackground" destination="evv-rn-Iej" id="5Gk-7J-ArH"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="agA-J8-x5F"/>
