@@ -29,6 +29,9 @@ public class Debug {
         - msg:   The message to log
      */
     public class func log(level: ErrorLvl, file: String, msg: String) {
+        let appSupportFolder = "/Webradio"
+        let errorLogFile = "/error.log"
+        
         let timestamp = NSDate.init().description
         let formatedMsg = timestamp +
             " <" + level.rawValue +
@@ -44,7 +47,7 @@ public class Debug {
         let fileManager = FileManager.default
         let errorLogPath = NSSearchPathForDirectoriesInDomains(
             .applicationSupportDirectory,
-            .userDomainMask, true).first?.appending("error.log")
+            .userDomainMask, true).first?.appending(appSupportFolder + errorLogFile)
         
         if (errorLogPath != nil) {
             if (!fileManager.fileExists(atPath: errorLogPath!)) {

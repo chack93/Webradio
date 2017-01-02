@@ -44,19 +44,16 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        /*
         // Test data
-        let streamItem = StreamItem.init(stream: URL.init(string: "http://stream.srg-ssr.ch/m/rsj/aacp_96")!, title: "AAC")
-        let streamItem2 = StreamItem.init(stream: URL.init(string: "http://stream.srg-ssr.ch/m/rsj/mp3_128")!, title: "MP3")
-        let streamItem3 = StreamItem.init(stream: URL.init(string: "http://example.org")!, title: "example")
+        let streamItem = StreamItem.init(stream: "http://stream.srg-ssr.ch/m/rsj/aacp_96", title: "AAC")
+        let streamItem2 = StreamItem.init(stream: "http://stream.srg-ssr.ch/m/rsj/mp3_128", title: "MP3")
+        let streamItem3 = StreamItem.init(stream: "http://example.org", title: "example")
         let testStation = Station.init(title: "Hello", genre: nil, image: nil, streams: [streamItem, streamItem2], text: "Description", favorite: true, scheduleItems: nil)
         let testStation2 = Station.init(title: "xxx", genre: "yyy", image: NSImage.init(named: "PauseIcon"), streams: [streamItem3], text: "Description2", favorite: false, scheduleItems: nil)
         self.stationListManager.stations.append(testStation)
         self.stationListManager.stations.append(testStation2)
-        self.stationListManager.stations.append(testStation2)
-        self.stationListManager.stations.append(testStation2)
-        self.stationListManager.stations.append(testStation2)
-        self.stationListManager.stations.append(testStation2)
-        self.stationListManager.stations.append(testStation2)
+ */
     }
     
     override func viewWillLayout() {

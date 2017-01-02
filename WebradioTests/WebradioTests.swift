@@ -66,7 +66,7 @@ class WebradioTests: XCTestCase {
     // MARK: - M3U import tests
     
     func testOpenSimpleM3U() {
-        let streamItem = StreamItem.init(stream: URL.init(string: "http://detektor.fm/stream/mp3/wort/")!)
+        let streamItem = StreamItem.init(stream: "http://detektor.fm/stream/mp3/wort/")
         let correctStations: [Station] = [
         Station.init(title: nil,
                      genre: nil,
@@ -85,9 +85,9 @@ class WebradioTests: XCTestCase {
     }
     
     func testOpenMultipleM3U() {
-        let streamItem1 = StreamItem.init(stream: URL.init(string: "http://streaming202.radionomy.com:80/Music-Box-Radio")!)
-        let streamItem2 = StreamItem.init(stream: URL.init(string: "http://streaming210.radionomy.com:80/Music-Box-Radio")!)
-        let streamItem3 = StreamItem.init(stream: URL.init(string: "http://streaming208.radionomy.com:80/Music-Box-Radio")!)
+        let streamItem1 = StreamItem.init(stream: "http://streaming202.radionomy.com:80/Music-Box-Radio")
+        let streamItem2 = StreamItem.init(stream: "http://streaming210.radionomy.com:80/Music-Box-Radio")
+        let streamItem3 = StreamItem.init(stream: "http://streaming208.radionomy.com:80/Music-Box-Radio")
         let correctStations: [Station] = [
             Station.init(title: nil,
                          genre: nil,
@@ -108,7 +108,7 @@ class WebradioTests: XCTestCase {
     }
     
     func testOpenExtendedM3U() {
-        let streamItem = StreamItem.init(stream: URL.init(string: "http://detektor.fm/stream/mp3/wort/")!)
+        let streamItem = StreamItem.init(stream: "http://detektor.fm/stream/mp3/wort/")
         let correctStations: [Station] = [
             Station.init(title: "Detektor.fm Wortstream",
                          genre: nil,

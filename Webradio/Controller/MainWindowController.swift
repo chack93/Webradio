@@ -22,6 +22,10 @@ class MainWindowController: NSWindowController {
         super.windowDidLoad()
     }
     
+    func prepareClosing() {
+        self.mainViewController!.stationListManager.saveStationList()
+    }
+    
     @IBAction func editStreams(sender: NSButton) {
         let streamsEditWC = StreamDetailWindowController()
         if let viewController = self.mainViewController, let streams = viewController.focusedStationItem?.stationObject?.streams {

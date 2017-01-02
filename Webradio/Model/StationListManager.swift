@@ -9,16 +9,45 @@
 import Foundation
 import AppKit
 
-public class StationListManager: NSObject {
-    // - MARK: constants
+class ArchieveableStationArray: NSObject, NSCoding {
+    var stations: [Station] = [Station]()
     
-    private let stationListFileName = "stationList.wrl"
+    override init() {
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        let length = aDecoder.decodeInteger(forKey: "length")
+            self.stations = [Station]()
+            for i in 0..<length {
+                let station = aDecoder.decodeObject(forKey: "station" + i.description) as! Station?
+                if station == nil {
+                    Debug.log(level: .Error, file: "ArchieveableStationArray", msg: "Found empty station at index: " + i.description + "; skipping")
+                    continue
+                }
+                self.stations.append(station!)
+            }
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        let length = self.stations.count
+        aCoder.encode(length as Int, forKey: "length")
+        for i in 0..<length {
+            aCoder.encode(self.stations[i], forKey: "station" + i.description)
+        }
+    }
+}
+
+class StationListManager: NSCoder {
+    // - MARK: constants
+    private let appSupportSubDir = "/Webradio"
+    private let stationListFilename = "/stationList.wrl"
     
     // - MARK: properties
     
     /// List of all saved stations
-    public var stations: [Station] = [Station]()
-    public var favoriteStations: [Station] {
+    var stations: [Station] = [Station]()
+    var favoriteStations: [Station] {
         get {
             var returnValue = [Station]()
             for station in self.stations {
@@ -30,55 +59,76 @@ public class StationListManager: NSObject {
         }
     }
     
-    // - MARK: Init/Deinit
+    // - MARK: Init
     
     /// Loads previously saved stations
-    override public init() {
+    override init() {
         super.init()
         let fileManager = FileManager.default
-        let stationListPath = NSSearchPathForDirectoriesInDomains(
+        // Application Support
+        guard let appSupportDir = NSSearchPathForDirectoriesInDomains(
             .applicationSupportDirectory,
-            .userDomainMask, true).first?.appending(self.stationListFileName)
-        
-        if (stationListPath != nil) {
-            if (!fileManager.fileExists(atPath: stationListPath!)) {
-                // Creat empty file & abort reading
-                fileManager.createFile(atPath: stationListPath!,
-                                       contents: nil,
-                                       attributes: nil)
+            .userDomainMask, true).first else {
+                Debug.log(level: .Error, file: self.classDescription.className, msg: "Unable to find Application Support Directory")
+                return
+        }
+        // Application Support/Webradio
+        if !fileManager.fileExists(atPath: appSupportDir + self.appSupportSubDir) {
+            do {
+                try fileManager.createDirectory(atPath: appSupportDir + self.appSupportSubDir, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                Debug.log(level: .Error, file: self.classDescription.className, msg: "Sub directory in Application Support could not be created; " + error.localizedDescription)
                 return
             }
-            if let stationList = NSKeyedUnarchiver.unarchiveObject(withFile: stationListPath!) as? [Station] {
-                self.stations = stationList
-            } else {
-                Debug.log(level: .Error, file: self.classDescription.className, msg: "Unable to unarchive station list")
-            }
-        } else {
-            Debug.log(level: .Error, file: self.classDescription.className, msg: "Unable to get the path to the station list")
         }
-    }
-    
-    /// Saves current list to file before closing
-    deinit {
-        let fileManager = FileManager.default
-        let stationListPath = NSSearchPathForDirectoriesInDomains(
-            .applicationSupportDirectory,
-            .userDomainMask, true).first?.appending(self.stationListFileName)
         
-        if (stationListPath != nil) {
-            // Create empty file to write to
-            if (!fileManager.fileExists(atPath: stationListPath!)) {
-                fileManager.createFile(atPath: stationListPath!,
-                                       contents: nil,
-                                       attributes: nil)
-            }
-            NSKeyedArchiver.archiveRootObject(self.stations, toFile: stationListPath!)
+        // Application Support/Webradio/stationList.wrl
+        let stationListPath = appSupportDir + self.appSupportSubDir + self.stationListFilename
+        if !fileManager.fileExists(atPath: stationListPath) {
+            fileManager.createFile(atPath: stationListPath, contents: nil, attributes: nil)
+            return
+        }
+        
+        if let archievableStationList = NSKeyedUnarchiver.unarchiveObject(withFile: stationListPath) as! ArchieveableStationArray? {
+            self.stations = archievableStationList.stations
         } else {
-            Debug.log(level: .Error, file: self.classDescription.className, msg: "Unable to get the path to the station list")
+            Debug.log(level: .Error, file: self.classDescription.className, msg: "Unable to unarchive station list")
         }
     }
     
-    // - MARK: Import Station from playlists
+    /// Write current station list to file
+    func saveStationList() {
+        let fileManager = FileManager.default
+        // Application Support
+        guard let appSupportDir = NSSearchPathForDirectoriesInDomains(
+            .applicationSupportDirectory,
+            .userDomainMask, true).first else {
+                Debug.log(level: .Error, file: self.classDescription.className, msg: "Unable to find Application Support Directory")
+                return
+        }
+        // Application Support/Webradio
+        if !fileManager.fileExists(atPath: appSupportDir + self.appSupportSubDir) {
+            do {
+                try fileManager.createDirectory(atPath: appSupportDir + self.appSupportSubDir, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                Debug.log(level: .Error, file: self.classDescription.className, msg: "Sub directory in Application Support could not be created; " + error.localizedDescription)
+                return
+            }
+        }
+        
+        // Application Support/Webradio/stationList.wrl
+        let stationListPath = appSupportDir + self.appSupportSubDir + self.stationListFilename
+        if !fileManager.fileExists(atPath: stationListPath) {
+            fileManager.createFile(atPath: stationListPath, contents: nil, attributes: nil)
+            return
+        }
+        let archievableStationArray = ArchieveableStationArray()
+        archievableStationArray.stations = self.stations
+        NSKeyedArchiver.archiveRootObject(archievableStationArray, toFile: stationListPath)
+    }
+    
+    
+    // - MARK: Playlist import functions
     
     /** Creates a station object from a m3u playlist
      - parameters:
@@ -88,7 +138,7 @@ public class StationListManager: NSObject {
      Will handle simple files as one station with multiple streams.
      Will add new station for each beginning extended information in stream
      */
-    public class func stationFrom(m3u: URL) -> [Station]? {
+    class func stationFrom(m3u: URL) -> [Station]? {
         var stations: [Station] = [Station]()
         var newStation: Station? = nil
         do {
@@ -119,10 +169,14 @@ public class StationListManager: NSObject {
                     if (newStation == nil) {
                         newStation = Station.init()
                     }
-                    if let stream = URL.init(string: line) {
-                        let streamItem = StreamItem.init(stream: stream, title: stream.lastPathComponent)
+                    if let lastPathComponent = line.components(separatedBy: "/").last {
+                        let streamItem = StreamItem.init(stream: line, title: lastPathComponent)
+                        newStation!.streams.append(streamItem)
+                    } else {
+                        let streamItem = StreamItem.init(stream: line, title: "")
                         newStation!.streams.append(streamItem)
                     }
+                    
                 }
             }
             // append item in simple m3u or last in extended playlist

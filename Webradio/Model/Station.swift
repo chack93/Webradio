@@ -9,12 +9,12 @@
 import Foundation
 import AppKit
 
-public class ScheduleItem: NSCoder {
-    dynamic public var start: String = ""
-    dynamic public var end: String = ""
-    dynamic public var text: String = ""
+class ScheduleItem: NSObject, NSCoding {
+    dynamic var start: String = ""
+    dynamic var end: String = ""
+    dynamic var text: String = ""
     
-    public required convenience init(coder decoder: NSCoder) {
+    required convenience init(coder decoder: NSCoder) {
         self.init()
         if let start = decoder.decodeObject(forKey: "start") as? String {
             self.start = start
@@ -34,33 +34,31 @@ public class ScheduleItem: NSCoder {
     }
 }
 
-public class StreamItem: NSCoder {
-    dynamic public var stream: URL?
-    dynamic public var title: String = ""
-    dynamic public var isDefault: Bool = false
+class StreamItem: NSObject, NSCoding {
+    dynamic var stream: String = ""
+    dynamic var title: String = ""
+    dynamic var isDefault: Bool = false
     
-    public required convenience init(coder decoder: NSCoder) {
+    required convenience init(coder decoder: NSCoder) {
         self.init()
-        if let stream = decoder.decodeObject(forKey: "stream") as? URL {
+        if let stream = decoder.decodeObject(forKey: "stream") as? String {
             self.stream = stream
         }
         if let title = decoder.decodeObject(forKey: "title") as? String {
             self.title = title
         }
-        if let isDefault = decoder.decodeObject(forKey: "isDefault") as? Bool {
-            self.isDefault = isDefault
-        }
+        self.isDefault = decoder.decodeBool(forKey: "isDefault")
     }
     
-    public convenience override init() {
-        self.init(stream: nil, title: "")
+    convenience override init() {
+        self.init(stream: "", title: "")
     }
     
-    public convenience init(stream: URL?) {
+    convenience init(stream: String) {
         self.init(stream: stream, title: "")
     }
     
-    public init(stream: URL?, title: String) {
+    init(stream: String, title: String) {
         self.stream = stream
         self.title = title
         self.isDefault = false
@@ -73,24 +71,24 @@ public class StreamItem: NSCoder {
     }
 }
 
-public class Station: NSCoder {
-    dynamic public var title: String = ""
-    dynamic public var genre: String = "" {
+class Station: NSObject, NSCoding {
+    dynamic var title: String = ""
+    dynamic var genre: String = "" {
         didSet {
             
         }
     }
-    dynamic public var image: NSImage = NSImage.init(named: "DefaultStationIcon")!
-    dynamic public var streams: [StreamItem] = []
-    dynamic public var text: String = ""
-    dynamic public var favorite: Bool = false
-    dynamic public var scheduleItems: [ScheduleItem] = [ScheduleItem]()
+    dynamic var image: NSImage = NSImage.init(named: "DefaultStationIcon")!
+    dynamic var streams: [StreamItem] = [StreamItem]()
+    dynamic var text: String = ""
+    dynamic var favorite: Bool = false
+    dynamic var scheduleItems: [ScheduleItem] = [ScheduleItem]()
     
-    public override init() {
+    override init() {
         super.init()
     }
     
-    public init(title: String?,
+    init(title: String?,
                 genre: String?,
                 image: NSImage?,
                 streams: [StreamItem],
@@ -121,7 +119,7 @@ public class Station: NSCoder {
         self.scheduleItems = scheduleItems != nil ? scheduleItems! : [ScheduleItem]()
     }
     
-    public required convenience init(coder decoder: NSCoder) {
+    required convenience init(coder decoder: NSCoder) {
         self.init()
         if let title = decoder.decodeObject(forKey: "title") as? String {
             self.title = title
@@ -150,9 +148,9 @@ public class Station: NSCoder {
         coder.encode(self.title, forKey: "title")
         coder.encode(self.genre, forKey: "genre")
         coder.encode(self.image, forKey: "image")
-        coder.encode(self.streams, forKey: "streams")
         coder.encode(self.text, forKey: "text")
         coder.encode(self.favorite, forKey: "favorite")
+        coder.encode(self.streams, forKey: "streams")
         coder.encode(self.scheduleItems, forKey: "scheduleItems")
     }
 }

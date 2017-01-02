@@ -14,22 +14,19 @@ class StreamPlayer: NSObject {
     var station: Station? {
         didSet {
             guard let streams = self.station?.streams else {
-                Debug.log(level: .Debug, file: self.classDescription.className, msg: "Set station is empty")
+                Debug.log(level: .Debug, file: self.className, msg: "Set station is empty")
                 return
             }
             var stream: URL?
             for item in streams {
                 if item.isDefault {
-                    stream = item.stream
+                    stream = URL.init(string: item.stream)
                     break
                 }
             }
             if stream == nil {
-                stream = streams.first?.stream
-                if stream == nil {
-                    Debug.log(level: .Error, file: self.classDescription.className, msg: "No stream avaiable")
-                    return
-                }
+                Debug.log(level: .Error, file: self.className, msg: "No stream avaiable")
+                return
             }
             self.playerItem = AVPlayerItem.init(url: stream!)
         }
@@ -46,7 +43,7 @@ class StreamPlayer: NSObject {
     // MARK: - Play functions
     func play() {
         guard let playerItem = self.playerItem else {
-            Debug.log(level: .Error, file: self.classDescription.className, msg: "Player item is empty")
+            Debug.log(level: .Error, file: self.className, msg: "Player item is empty")
             return
         }
         if self.player.currentItem == playerItem {

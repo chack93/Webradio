@@ -11,7 +11,7 @@ import Cocoa
 class TableItem: NSObject, NSCoding {
 
     dynamic var title = ""
-    dynamic var stream: String?
+    dynamic var stream = ""
     dynamic var isDefault = false {
         didSet {
             if !self.isDefault {
@@ -24,16 +24,16 @@ class TableItem: NSObject, NSCoding {
     }
     var isDefaultCallback: ((TableItem) -> Void)?
     
-    init(title: String, stream: String?, isDefault: Bool, callback: @escaping (TableItem) -> Void) {
+    init(title: String, stream: String, isDefault: Bool, callback: @escaping (TableItem) -> Void) {
         self.title = title
-        self.stream = stream != nil ? stream : ""
+        self.stream = stream
         self.isDefault = isDefault
         self.isDefaultCallback = callback
     }
     
     required init?(coder aDecoder: NSCoder) {
         title = aDecoder.decodeObject(forKey: "title") as! String
-        stream = aDecoder.decodeObject(forKey: "stream") as! String?
+        stream = aDecoder.decodeObject(forKey: "stream") as! String
         isDefault = aDecoder.decodeObject(forKey: "isDefault") as! Bool
         super.init()
     }
@@ -67,7 +67,7 @@ class StreamDetailWindowController: NSWindowController {
             }
             streamItemsSet = true
             for item in streamItems {
-                let tblItem = TableItem.init(title: item.title, stream: item.stream?.absoluteString, isDefault: item.isDefault, callback: self.setDefault)
+                let tblItem = TableItem.init(title: item.title, stream: item.stream, isDefault: item.isDefault, callback: self.setDefault)
                 self.tableItems.append(tblItem)
             }
         }
@@ -88,20 +88,20 @@ class StreamDetailWindowController: NSWindowController {
     @IBAction func closeWindow(_: NSButton) {
         self.streamItems.removeAll()
         for item in self.tableItems {
-            if let stream = URL.init(string: item.stream!) {
+            
                 let newStrItm = StreamItem.init()
                 newStrItm.title = item.title
-                newStrItm.stream = stream
+                newStrItm.stream = item.stream
                 newStrItm.isDefault = item.isDefault
                 self.streamItems.append(newStrItm)
-            }
+            
         }
         self.window!.endEditing(for: self)
         window!.sheetParent!.endSheet(window!, returnCode: NSModalResponseOK)
     }
     
     @IBAction func addItem(_: NSButton) {
-        let newItem = TableItem.init(title: "Title", stream: nil, isDefault: false, callback: self.setDefault)
+        let newItem = TableItem.init(title: "Title", stream: "", isDefault: false, callback: self.setDefault)
         self.tableItems.append(newItem)
     }
     
