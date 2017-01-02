@@ -32,7 +32,9 @@ public class Debug {
         let appSupportFolder = "/Webradio"
         let errorLogFile = "/error.log"
         
-        let timestamp = NSDate.init().description
+        let localTimezone = NSTimeZone.default
+        let seconds = TimeInterval(localTimezone.secondsFromGMT())
+        let timestamp = Date().addingTimeInterval(seconds).description
         let formatedMsg = timestamp +
             " <" + level.rawValue +
             "> File: " + file +
