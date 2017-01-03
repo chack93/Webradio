@@ -181,10 +181,10 @@
                                 </connections>
                             </button>
                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="azu-T8-ymx">
-                                <rect key="frame" x="18" y="1" width="5" height="20"/>
+                                <rect key="frame" x="20" y="3" width="5" height="16"/>
                             </box>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="YO1-jB-cr5">
-                                <rect key="frame" x="23" y="4" width="14" height="14"/>
+                                <rect key="frame" x="27" y="4" width="14" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="14" id="Wie-Qo-Lvi"/>
                                 </constraints>
@@ -198,14 +198,14 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="azu-T8-ymx" secondAttribute="bottom" constant="1" id="1qq-65-O5G"/>
+                            <constraint firstAttribute="bottom" secondItem="azu-T8-ymx" secondAttribute="bottom" constant="3" id="1qq-65-O5G"/>
                             <constraint firstAttribute="bottom" secondItem="YO1-jB-cr5" secondAttribute="bottom" constant="4" id="9NS-wm-f5b"/>
-                            <constraint firstItem="YO1-jB-cr5" firstAttribute="leading" secondItem="azu-T8-ymx" secondAttribute="trailing" constant="2" id="DM5-fK-a7c"/>
+                            <constraint firstItem="YO1-jB-cr5" firstAttribute="leading" secondItem="azu-T8-ymx" secondAttribute="trailing" constant="4" id="DM5-fK-a7c"/>
                             <constraint firstAttribute="bottom" secondItem="Jsm-oM-B7i" secondAttribute="bottom" constant="4" id="Gq0-vp-vUz"/>
                             <constraint firstItem="Jsm-oM-B7i" firstAttribute="leading" secondItem="Sq3-6H-Wu5" secondAttribute="leading" constant="4" id="JPh-jp-ibY"/>
                             <constraint firstItem="Jsm-oM-B7i" firstAttribute="top" secondItem="Sq3-6H-Wu5" secondAttribute="top" constant="4" id="V7f-v4-nAL"/>
-                            <constraint firstItem="azu-T8-ymx" firstAttribute="top" secondItem="Sq3-6H-Wu5" secondAttribute="top" constant="1" id="dqo-tg-AKS"/>
-                            <constraint firstItem="azu-T8-ymx" firstAttribute="leading" secondItem="Jsm-oM-B7i" secondAttribute="trailing" constant="2" id="eAZ-nh-lqc"/>
+                            <constraint firstItem="azu-T8-ymx" firstAttribute="top" secondItem="Sq3-6H-Wu5" secondAttribute="top" constant="3" id="dqo-tg-AKS"/>
+                            <constraint firstItem="azu-T8-ymx" firstAttribute="leading" secondItem="Jsm-oM-B7i" secondAttribute="trailing" constant="4" id="eAZ-nh-lqc"/>
                             <constraint firstAttribute="height" constant="22" id="wXJ-VU-g8q"/>
                             <constraint firstItem="YO1-jB-cr5" firstAttribute="top" secondItem="Sq3-6H-Wu5" secondAttribute="top" constant="4" id="yWj-y7-k7v"/>
                         </constraints>
@@ -220,7 +220,7 @@
                                 <integer key="value" value="2"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                <color key="value" red="0.77381223440170288" green="0.77392458915710449" blue="0.77378761768341064" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" white="0.71999999999999997" alpha="1" colorSpace="calibratedWhite"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </customView>

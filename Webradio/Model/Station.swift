@@ -72,6 +72,7 @@ class StreamItem: NSObject, NSCoding {
 }
 
 class Station: NSObject, NSCoding {
+    dynamic var index: Int = -1
     dynamic var title: String = ""
     dynamic var genre: String = "" {
         didSet {
@@ -121,6 +122,9 @@ class Station: NSObject, NSCoding {
     
     required convenience init(coder decoder: NSCoder) {
         self.init()
+        if let index = decoder.decodeObject(forKey: "index") as? Int {
+            self.index = index
+        }
         if let title = decoder.decodeObject(forKey: "title") as? String {
             self.title = title
         }
@@ -145,6 +149,7 @@ class Station: NSObject, NSCoding {
     }
     
     func encode(with coder: NSCoder) {
+        coder.encode(self.index, forKey: "index")
         coder.encode(self.title, forKey: "title")
         coder.encode(self.genre, forKey: "genre")
         coder.encode(self.image, forKey: "image")

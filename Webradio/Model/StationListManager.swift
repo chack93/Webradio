@@ -10,7 +10,7 @@ import Foundation
 import AppKit
 
 class ArchieveableStationArray: NSObject, NSCoding {
-    var stations: [Station] = [Station]()
+    var stations = [Station]()
     
     override init() {
         super.init()
@@ -18,15 +18,15 @@ class ArchieveableStationArray: NSObject, NSCoding {
     
     required init?(coder aDecoder: NSCoder) {
         let length = aDecoder.decodeInteger(forKey: "length")
-            self.stations = [Station]()
-            for i in 0..<length {
-                let station = aDecoder.decodeObject(forKey: "station" + i.description) as! Station?
-                if station == nil {
-                    Debug.log(level: .Error, file: "ArchieveableStationArray", msg: "Found empty station at index: " + i.description + "; skipping")
-                    continue
-                }
-                self.stations.append(station!)
+        self.stations = [Station]()
+        for i in 0..<length {
+            let station = aDecoder.decodeObject(forKey: "station" + i.description) as! Station?
+            if station == nil {
+                Debug.log(level: .Error, file: "ArchieveableStationArray", msg: "Found empty station at index: " + i.description + "; skipping")
+                continue
             }
+            self.stations.append(station!)
+        }
     }
     
     func encode(with aCoder: NSCoder) {
@@ -46,7 +46,7 @@ class StationListManager: NSCoder {
     // - MARK: properties
     
     /// List of all saved stations
-    var stations: [Station] = [Station]()
+    var stations = [Station]()
     var favoriteStations: [Station] {
         get {
             var returnValue = [Station]()
@@ -93,7 +93,9 @@ class StationListManager: NSCoder {
             self.stations = archievableStationList.stations
         } else {
             Debug.log(level: .Error, file: self.classDescription.className, msg: "Unable to unarchive station list")
+            return
         }
+        self.syncStationIndexes()
     }
     
     /// Write current station list to file
@@ -127,6 +129,12 @@ class StationListManager: NSCoder {
         NSKeyedArchiver.archiveRootObject(archievableStationArray, toFile: stationListPath)
     }
     
+    /// sync index property in each station with array index
+    func syncStationIndexes() {
+        for i in 0..<self.stations.count {
+            self.stations[i].index = i
+        }
+    }
     
     // - MARK: Playlist import functions
     

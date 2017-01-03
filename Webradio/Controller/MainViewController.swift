@@ -25,6 +25,15 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
                         self.focusedStreamIndex = i
                     }
                 }
+                self.focusedStationIndex = stationObj.index
+            }
+        }
+    }
+    var focusedStationIndex = 0 {
+        didSet {
+            let items = self.stationListCollection.visibleItems()
+            for item in items {
+                (item as! StationListItem).setBackground()
             }
         }
     }
@@ -34,7 +43,6 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
             streamPlayer.volumeLevel = volumeLevel
         }
     }
-    var focusFirstStationItem = true
     var streamPlayer = StreamPlayer()
     
     // MARK: - ViewController properties/functions
@@ -44,16 +52,6 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*
-        // Test data
-        let streamItem = StreamItem.init(stream: "http://stream.srg-ssr.ch/m/rsj/aacp_96", title: "AAC")
-        let streamItem2 = StreamItem.init(stream: "http://stream.srg-ssr.ch/m/rsj/mp3_128", title: "MP3")
-        let streamItem3 = StreamItem.init(stream: "http://example.org", title: "example")
-        let testStation = Station.init(title: "Hello", genre: nil, image: nil, streams: [streamItem, streamItem2], text: "Description", favorite: true, scheduleItems: nil)
-        let testStation2 = Station.init(title: "xxx", genre: "yyy", image: NSImage.init(named: "PauseIcon"), streams: [streamItem3], text: "Description2", favorite: false, scheduleItems: nil)
-        self.stationListManager.stations.append(testStation)
-        self.stationListManager.stations.append(testStation2)
- */
     }
     
     override func viewWillLayout() {
@@ -78,12 +76,9 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
         
         stationListItem.stationObject = self.stationListManager.stations[indexPath.item]
         stationListItem.clickCallback = self.navigateStationList
-        
-        // focus first item on startup
-        if self.focusFirstStationItem && indexPath.item == 0 {
-            stationListItem.isFocused = true
-            self.focusFirstStationItem = false
-            focusedStationItem = stationListItem
+        stationListItem.parentVC = self
+        if stationListItem.stationObject!.index == self.focusedStationIndex {
+            self.focusedStationItem = stationListItem
         }
         return item
     }
@@ -92,12 +87,7 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
     func navigateStationList(_ event: NSEvent, selectedItem: StationListItem) {
         switch (event.type) {
         case .leftMouseUp:
-            if let lastFocusedItem = self.focusedStationItem {
-                lastFocusedItem.isFocused = false
-            }
-            selectedItem.isFocused = true
             self.focusedStationItem = selectedItem
-            
             guard let stationObj = self.focusedStationItem?.stationObject else {
                 Debug.log(level: .Error, file: self.classDescription.className, msg: "Focused station item object missing")
                 return
@@ -118,6 +108,7 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
             self.streamPlayer.pause()
         } else {
             guard let stationObj = self.focusedStationItem?.stationObject else {
+                self.streamPlayer.isPlaying = false
                 Debug.log(level: .Error, file: self.classDescription.className, msg: "Focused station item or containing object missing")
                 return
             }
@@ -136,5 +127,23 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
                 }
             }
         }
+    }
+    @IBAction func addStation(_ sender: NSButton) {
+        let newStation = Station.init(title: "New Station", genre: "Genre", image: nil, streams: [], text: nil, favorite: nil, scheduleItems: nil)
+        self.stationListManager.stations.append(newStation)
+        self.stationListManager.syncStationIndexes()
+        self.focusedStationIndex = self.stationListManager.stations.count - 1
+        self.stationListCollection.reloadData()
+    }
+    @IBAction func removeStation(_ sender: NSButton) {
+        guard let focusedStation = self.focusedStationItem?.stationObject else {
+            return
+        }
+        guard let idx = self.stationListManager.stations.index(of: focusedStation) else {
+            return
+        }
+        self.stationListManager.stations.remove(at: idx)
+        self.stationListManager.syncStationIndexes()
+        self.stationListCollection.reloadData()
     }
 }

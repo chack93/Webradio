@@ -98,13 +98,13 @@ IA
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="F8f-53-emQ">
-                                        <rect key="frame" x="0.0" y="20" width="160" height="341"/>
+                                        <rect key="frame" x="0.0" y="21" width="160" height="340"/>
                                         <clipView key="contentView" drawsBackground="NO" id="LJZ-rx-5Ls">
-                                            <rect key="frame" x="1" y="1" width="158" height="339"/>
+                                            <rect key="frame" x="1" y="1" width="158" height="338"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <collectionView selectable="YES" allowsEmptySelection="NO" id="ilm-hh-l3n">
-                                                    <rect key="frame" x="0.0" y="0.0" width="158" height="339"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="158" height="338"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <collectionViewGridLayout key="collectionViewLayout" id="U7Z-sK-ZAN">
                                                         <size key="minimumItemSize" width="9999" height="48"/>
@@ -123,15 +123,15 @@ IA
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="NW4-Zu-gdN">
-                                            <rect key="frame" x="143" y="1" width="16" height="339"/>
+                                            <rect key="frame" x="143" y="1" width="16" height="337"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="SoV-wG-Xcn">
-                                        <rect key="frame" x="0.0" y="0.0" width="160" height="20"/>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="SoV-wG-Xcn" customClass="GradientView" customModule="Webradio" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="22"/>
                                         <subviews>
                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="8BE-7f-WEj">
-                                                <rect key="frame" x="4" y="0.0" width="16" height="16"/>
+                                                <rect key="frame" x="4" y="4" width="16" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="16" id="zKd-7X-Szb"/>
                                                 </constraints>
@@ -139,18 +139,57 @@ IA
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
+                                                <connections>
+                                                    <action selector="addStation:" target="HlQ-Wu-ujW" id="yxi-zg-J3R"/>
+                                                </connections>
+                                            </button>
+                                            <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="oBj-bR-ndt">
+                                                <rect key="frame" x="22" y="3" width="5" height="16"/>
+                                            </box>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="IDA-3M-xRt">
+                                                <rect key="frame" x="29" y="4" width="16" height="14"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="16" id="ABm-bj-v7D"/>
+                                                </constraints>
+                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="k7z-Te-Ns8">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="removeStation:" target="HlQ-Wu-ujW" id="WvJ-wU-5Hx"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="8BE-7f-WEj" firstAttribute="top" secondItem="SoV-wG-Xcn" secondAttribute="top" constant="4" id="2J8-FF-SWA"/>
-                                            <constraint firstAttribute="height" constant="20" id="g1l-6X-bAd"/>
+                                            <constraint firstItem="IDA-3M-xRt" firstAttribute="leading" secondItem="oBj-bR-ndt" secondAttribute="trailing" constant="4" id="FNQ-wq-BdB"/>
+                                            <constraint firstAttribute="bottom" secondItem="IDA-3M-xRt" secondAttribute="bottom" constant="4" id="Hz9-m4-6XI"/>
+                                            <constraint firstItem="oBj-bR-ndt" firstAttribute="leading" secondItem="8BE-7f-WEj" secondAttribute="trailing" constant="4" id="VAZ-hT-rX1"/>
+                                            <constraint firstAttribute="height" constant="22" id="g1l-6X-bAd"/>
+                                            <constraint firstItem="oBj-bR-ndt" firstAttribute="top" secondItem="SoV-wG-Xcn" secondAttribute="top" constant="3" id="jUd-s9-Wpg"/>
+                                            <constraint firstAttribute="bottom" secondItem="oBj-bR-ndt" secondAttribute="bottom" constant="3" id="kcJ-GW-6Ry"/>
+                                            <constraint firstItem="IDA-3M-xRt" firstAttribute="top" secondItem="SoV-wG-Xcn" secondAttribute="top" constant="4" id="l0z-zq-Ymf"/>
                                             <constraint firstItem="8BE-7f-WEj" firstAttribute="leading" secondItem="SoV-wG-Xcn" secondAttribute="leading" constant="4" id="rIX-YU-q6V"/>
-                                            <constraint firstAttribute="bottom" secondItem="8BE-7f-WEj" secondAttribute="bottom" id="tEM-0G-Sby"/>
+                                            <constraint firstAttribute="bottom" secondItem="8BE-7f-WEj" secondAttribute="bottom" constant="4" id="tEM-0G-Sby"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="start">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="end">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.71999999999999997" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </customView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="SoV-wG-Xcn" firstAttribute="top" secondItem="F8f-53-emQ" secondAttribute="bottom" id="5wC-G8-2jU"/>
+                                    <constraint firstItem="SoV-wG-Xcn" firstAttribute="top" secondItem="F8f-53-emQ" secondAttribute="bottom" constant="-1" id="5wC-G8-2jU"/>
                                     <constraint firstAttribute="bottom" secondItem="SoV-wG-Xcn" secondAttribute="bottom" id="Ifb-zw-tN5"/>
                                     <constraint firstAttribute="trailing" secondItem="SoV-wG-Xcn" secondAttribute="trailing" id="PFT-yD-F7k"/>
                                     <constraint firstItem="F8f-53-emQ" firstAttribute="leading" secondItem="3aO-mR-0Tj" secondAttribute="leading" id="qFc-Pp-zxU"/>
@@ -366,7 +405,7 @@ IA
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="-1323" y="241"/>
+            <point key="canvasLocation" x="-1323" y="240.5"/>
         </window>
         <viewController id="HlQ-Wu-ujW" customClass="MainViewController" customModule="Webradio" customModuleProvider="target">
             <connections>
@@ -386,6 +425,7 @@ IA
     <resources>
         <image name="DefaultStationIcon" width="512" height="512"/>
         <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="PauseIcon" width="64" height="64"/>
         <image name="PlayIcon" width="64" height="64"/>
         <image name="SettingsIcon" width="64" height="64"/>
