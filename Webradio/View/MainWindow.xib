@@ -17,15 +17,15 @@
         <window title="Webradio" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="480" height="413"/>
+            <rect key="contentRect" x="196" y="240" width="552" height="400"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
-            <value key="minSize" type="size" width="480" height="270"/>
+            <value key="minSize" type="size" width="220" height="270"/>
             <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="413"/>
+                <rect key="frame" x="0.0" y="0.0" width="552" height="400"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="dn0-2A-uCJ" customClass="GradientView" customModule="Webradio">
-                        <rect key="frame" x="0.0" y="377" width="480" height="36"/>
+                        <rect key="frame" x="0.0" y="364" width="552" height="36"/>
                         <subviews>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Vt7-8v-4W9">
                                 <rect key="frame" x="20" y="6" width="24" height="24"/>
@@ -91,23 +91,23 @@ IA
                         </userDefinedRuntimeAttributes>
                     </customView>
                     <splitView arrangesAllSubviews="NO" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f7A-Bi-oza">
-                        <rect key="frame" x="8" y="8" width="464" height="361"/>
+                        <rect key="frame" x="8" y="8" width="536" height="348"/>
                         <subviews>
                             <customView id="3aO-mR-0Tj">
-                                <rect key="frame" x="0.0" y="0.0" width="160" height="361"/>
+                                <rect key="frame" x="0.0" y="0.0" width="220" height="348"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="F8f-53-emQ">
-                                        <rect key="frame" x="0.0" y="21" width="160" height="340"/>
+                                        <rect key="frame" x="0.0" y="21" width="220" height="327"/>
                                         <clipView key="contentView" drawsBackground="NO" id="LJZ-rx-5Ls">
-                                            <rect key="frame" x="1" y="1" width="158" height="338"/>
+                                            <rect key="frame" x="1" y="1" width="218" height="325"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <collectionView selectable="YES" allowsEmptySelection="NO" id="ilm-hh-l3n">
-                                                    <rect key="frame" x="0.0" y="0.0" width="158" height="338"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="218" height="325"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <collectionViewGridLayout key="collectionViewLayout" id="U7Z-sK-ZAN">
-                                                        <size key="minimumItemSize" width="9999" height="48"/>
+                                                    <collectionViewGridLayout key="collectionViewLayout" maximumNumberOfColumns="1" id="nY4-4m-aeI">
+                                                        <size key="minimumItemSize" width="220" height="48"/>
                                                         <size key="maximumItemSize" width="0.0" height="48"/>
                                                     </collectionViewGridLayout>
                                                     <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -123,12 +123,12 @@ IA
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="NW4-Zu-gdN">
-                                            <rect key="frame" x="143" y="1" width="16" height="337"/>
+                                            <rect key="frame" x="206" y="1" width="16" height="325"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="SoV-wG-Xcn" customClass="GradientView" customModule="Webradio" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="160" height="22"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="220" height="22"/>
                                         <subviews>
                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="8BE-7f-WEj">
                                                 <rect key="frame" x="4" y="4" width="16" height="14"/>
@@ -190,6 +190,7 @@ IA
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="SoV-wG-Xcn" firstAttribute="top" secondItem="F8f-53-emQ" secondAttribute="bottom" constant="-1" id="5wC-G8-2jU"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="DvC-Mf-S5L"/>
                                     <constraint firstAttribute="bottom" secondItem="SoV-wG-Xcn" secondAttribute="bottom" id="Ifb-zw-tN5"/>
                                     <constraint firstAttribute="trailing" secondItem="SoV-wG-Xcn" secondAttribute="trailing" id="PFT-yD-F7k"/>
                                     <constraint firstItem="F8f-53-emQ" firstAttribute="leading" secondItem="3aO-mR-0Tj" secondAttribute="leading" id="qFc-Pp-zxU"/>
@@ -199,34 +200,37 @@ IA
                                 </constraints>
                             </customView>
                             <customView id="Z9d-NZ-KGg">
-                                <rect key="frame" x="161" y="0.0" width="303" height="361"/>
+                                <rect key="frame" x="221" y="0.0" width="315" height="348"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WT5-wS-WAr">
-                                        <rect key="frame" x="0.0" y="0.0" width="303" height="361"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="348"/>
                                         <clipView key="contentView" id="dL4-kt-aUF">
-                                            <rect key="frame" x="1" y="1" width="301" height="359"/>
+                                            <rect key="frame" x="1" y="1" width="313" height="346"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <view translatesAutoresizingMaskIntoConstraints="NO" id="JBQ-0e-3yw">
-                                                    <rect key="frame" x="0.0" y="0.0" width="301" height="359"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="313" height="346"/>
                                                     <subviews>
                                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qzO-6n-X22">
-                                                            <rect key="frame" x="20" y="255" width="96" height="96"/>
+                                                            <rect key="frame" x="20" y="242" width="96" height="96"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="96" id="7ha-nm-fPc"/>
                                                                 <constraint firstAttribute="height" constant="96" id="99K-rc-lsf"/>
                                                             </constraints>
                                                             <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" image="DefaultStationIcon" id="5SO-9x-4JN"/>
                                                             <connections>
-                                                                <binding destination="HlQ-Wu-ujW" name="value" keyPath="focusedStationItem.stationObject.image" id="y5p-5J-bDg"/>
+                                                                <binding destination="HlQ-Wu-ujW" name="hidden" keyPath="focusedStation" id="3vy-IN-2sN">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSValueTransformerName">NSIsNil</string>
+                                                                    </dictionary>
+                                                                </binding>
+                                                                <binding destination="HlQ-Wu-ujW" name="value" keyPath="focusedStation.image" id="pWW-xz-agY"/>
                                                             </connections>
                                                         </imageView>
                                                         <textField toolTip="Edit name" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJU-Pc-BIf">
-                                                            <rect key="frame" x="122" y="334" width="161" height="17"/>
+                                                            <rect key="frame" x="122" y="321" width="173" height="17"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="157" id="SiF-EM-jhv"/>
-                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="jDS-4O-OAY"/>
                                                                 <constraint firstAttribute="height" constant="17" id="srW-v4-HH5"/>
                                                             </constraints>
                                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Name" id="Qfa-Kf-RSI">
@@ -235,15 +239,18 @@ IA
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="HlQ-Wu-ujW" name="value" keyPath="focusedStationItem.stationObject.title" id="ObU-9k-LL5"/>
+                                                                <binding destination="HlQ-Wu-ujW" name="hidden" keyPath="focusedStation" id="a7e-zB-hO6">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSValueTransformerName">NSIsNil</string>
+                                                                    </dictionary>
+                                                                </binding>
+                                                                <binding destination="HlQ-Wu-ujW" name="value" keyPath="focusedStation.title" id="2kD-Vd-PED"/>
                                                             </connections>
                                                         </textField>
                                                         <textField toolTip="Edit genre" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e79-Zk-u6H">
-                                                            <rect key="frame" x="122" y="309" width="161" height="17"/>
+                                                            <rect key="frame" x="122" y="296" width="173" height="17"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="17" id="Tmk-a3-dle"/>
-                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="XIa-Bd-w9A"/>
-                                                                <constraint firstAttribute="width" constant="157" id="dbU-PG-3Pv"/>
                                                             </constraints>
                                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Genre" id="dWL-Xu-Z6k">
                                                                 <font key="font" metaFont="system"/>
@@ -251,14 +258,18 @@ IA
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                             <connections>
-                                                                <binding destination="HlQ-Wu-ujW" name="value" keyPath="focusedStationItem.stationObject.genre" id="hBj-k4-zDr"/>
+                                                                <binding destination="HlQ-Wu-ujW" name="hidden" keyPath="focusedStation" id="p17-XW-QlC">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSValueTransformerName">NSIsNil</string>
+                                                                    </dictionary>
+                                                                </binding>
+                                                                <binding destination="HlQ-Wu-ujW" name="value" keyPath="focusedStation.genre" id="ow8-TF-DfD"/>
                                                             </connections>
                                                         </textField>
                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89u-WR-NTr">
-                                                            <rect key="frame" x="122" y="284" width="161" height="17"/>
+                                                            <rect key="frame" x="122" y="271" width="161" height="17"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="157" id="2jV-YC-G6G"/>
-                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="pSF-wm-UOb"/>
                                                                 <constraint firstAttribute="height" constant="17" id="ugO-gU-wOb"/>
                                                             </constraints>
                                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Default Streams" id="K08-SN-WUM">
@@ -266,12 +277,19 @@ IA
                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
+                                                            <connections>
+                                                                <binding destination="HlQ-Wu-ujW" name="hidden" keyPath="focusedStation" id="MpD-BL-Qes">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSValueTransformerName">NSIsNil</string>
+                                                                    </dictionary>
+                                                                </binding>
+                                                            </connections>
                                                         </textField>
                                                         <popUpButton toolTip="Select stream to use when playing" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5ZG-V6-MhM">
-                                                            <rect key="frame" x="122" y="252" width="137" height="26"/>
+                                                            <rect key="frame" x="122" y="239" width="125" height="26"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="P1e-TR-lpx"/>
-                                                                <constraint firstAttribute="width" constant="132" id="cRn-EP-b3U"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="cRn-EP-b3U"/>
                                                             </constraints>
                                                             <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="XXI-Gq-Id4" id="KJK-NZ-kYI">
                                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -289,11 +307,16 @@ IA
                                                             </popUpButtonCell>
                                                             <connections>
                                                                 <binding destination="xDt-PE-9rt" name="contentValues" keyPath="arrangedObjects.title" id="YVu-0o-WXn"/>
+                                                                <binding destination="HlQ-Wu-ujW" name="hidden" keyPath="focusedStation" id="Y7k-KY-XbO">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSValueTransformerName">NSIsNil</string>
+                                                                    </dictionary>
+                                                                </binding>
                                                                 <binding destination="HlQ-Wu-ujW" name="selectedIndex" keyPath="self.focusedStreamIndex" previousBinding="YVu-0o-WXn" id="gP1-p9-oHu"/>
                                                             </connections>
                                                         </popUpButton>
                                                         <button toolTip="Edit streams" translatesAutoresizingMaskIntoConstraints="NO" id="xOQ-AH-nCr">
-                                                            <rect key="frame" x="260" y="256" width="21" height="21"/>
+                                                            <rect key="frame" x="248" y="243" width="21" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="21" id="EtX-yJ-JOo"/>
                                                                 <constraint firstAttribute="height" constant="21" id="kDY-Rq-Ud8"/>
@@ -304,23 +327,28 @@ IA
                                                             </buttonCell>
                                                             <connections>
                                                                 <action selector="editStreamsWithSender:" target="-2" id="Tvv-Ab-EgF"/>
+                                                                <binding destination="HlQ-Wu-ujW" name="hidden" keyPath="focusedStation" id="czW-Rz-AH9">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSValueTransformerName">NSIsNil</string>
+                                                                    </dictionary>
+                                                                </binding>
                                                             </connections>
                                                         </button>
                                                         <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhY-bc-NS6">
-                                                            <rect key="frame" x="20" y="171" width="261" height="77"/>
+                                                            <rect key="frame" x="20" y="158" width="273" height="77"/>
                                                             <clipView key="contentView" id="XWx-Ia-GaS">
-                                                                <rect key="frame" x="1" y="1" width="259" height="75"/>
+                                                                <rect key="frame" x="1" y="1" width="271" height="75"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
                                                                     <textView importsGraphics="NO" richText="NO" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="SyA-2V-Wv3">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="259" height="75"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="271" height="75"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        <size key="minSize" width="259" height="75"/>
+                                                                        <size key="minSize" width="271" height="75"/>
                                                                         <size key="maxSize" width="463" height="10000000"/>
                                                                         <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <connections>
-                                                                            <binding destination="HlQ-Wu-ujW" name="value" keyPath="focusedStationItem.stationObject.text" id="jft-Iv-QLW"/>
+                                                                            <binding destination="HlQ-Wu-ujW" name="value" keyPath="focusedStation.text" id="Hei-Xd-PRq"/>
                                                                         </connections>
                                                                     </textView>
                                                                 </subviews>
@@ -334,9 +362,16 @@ IA
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </scroller>
                                                             <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="pAb-RG-rYs">
-                                                                <rect key="frame" x="244" y="1" width="16" height="75"/>
+                                                                <rect key="frame" x="256" y="1" width="16" height="75"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                             </scroller>
+                                                            <connections>
+                                                                <binding destination="HlQ-Wu-ujW" name="hidden" keyPath="focusedStation" id="yQw-f5-7MZ">
+                                                                    <dictionary key="options">
+                                                                        <string key="NSValueTransformerName">NSIsNil</string>
+                                                                    </dictionary>
+                                                                </binding>
+                                                            </connections>
                                                         </scrollView>
                                                     </subviews>
                                                     <constraints>
@@ -352,7 +387,6 @@ IA
                                                         <constraint firstItem="xOQ-AH-nCr" firstAttribute="top" secondItem="89u-WR-NTr" secondAttribute="bottom" constant="7" id="Xzl-br-wUA"/>
                                                         <constraint firstItem="e79-Zk-u6H" firstAttribute="top" secondItem="kJU-Pc-BIf" secondAttribute="bottom" constant="8" id="aQm-XQ-UZV"/>
                                                         <constraint firstItem="89u-WR-NTr" firstAttribute="top" secondItem="e79-Zk-u6H" secondAttribute="bottom" constant="8" id="bQY-kV-FVp"/>
-                                                        <constraint firstAttribute="trailing" secondItem="89u-WR-NTr" secondAttribute="trailing" constant="20" id="mQN-Kg-S8u"/>
                                                         <constraint firstItem="5ZG-V6-MhM" firstAttribute="leading" secondItem="qzO-6n-X22" secondAttribute="trailing" constant="8" id="mUX-0F-3Ng"/>
                                                         <constraint firstItem="kJU-Pc-BIf" firstAttribute="top" secondItem="JBQ-0e-3yw" secondAttribute="top" constant="8" id="o0l-vU-yNT"/>
                                                         <constraint firstAttribute="trailing" secondItem="e79-Zk-u6H" secondAttribute="trailing" constant="20" id="pEF-Al-Jgu"/>
@@ -372,8 +406,8 @@ IA
                                             <rect key="frame" x="-100" y="-100" width="301" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Wh2-9D-iq7">
-                                            <rect key="frame" x="286" y="1" width="16" height="359"/>
+                                        <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="Wh2-9D-iq7">
+                                            <rect key="frame" x="298" y="1" width="16" height="346"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
@@ -382,6 +416,7 @@ IA
                                     <constraint firstItem="WT5-wS-WAr" firstAttribute="top" secondItem="Z9d-NZ-KGg" secondAttribute="top" id="7AV-Tl-ex0"/>
                                     <constraint firstAttribute="trailing" secondItem="WT5-wS-WAr" secondAttribute="trailing" id="Mm4-cF-DuA"/>
                                     <constraint firstAttribute="bottom" secondItem="WT5-wS-WAr" secondAttribute="bottom" id="dDG-X8-B4S"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="280" id="nKq-aS-w9U"/>
                                     <constraint firstItem="WT5-wS-WAr" firstAttribute="leading" secondItem="Z9d-NZ-KGg" secondAttribute="leading" id="xgy-RE-Xwa"/>
                                 </constraints>
                             </customView>
@@ -405,10 +440,11 @@ IA
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="-1323" y="240.5"/>
+            <point key="canvasLocation" x="-1295" y="240"/>
         </window>
         <viewController id="HlQ-Wu-ujW" customClass="MainViewController" customModule="Webradio" customModuleProvider="target">
             <connections>
+                <outlet property="stationDetailView" destination="Z9d-NZ-KGg" id="CG0-pF-jCl"/>
                 <outlet property="stationListCollection" destination="ilm-hh-l3n" id="aDP-a8-frh"/>
                 <outlet property="stationListScrollView" destination="F8f-53-emQ" id="WsF-GO-ngf"/>
                 <outlet property="streamSelectArray" destination="xDt-PE-9rt" id="03R-FV-2xZ"/>
@@ -418,7 +454,7 @@ IA
         <userDefaultsController representsSharedInstance="YES" id="5Fc-nv-rQy"/>
         <arrayController id="xDt-PE-9rt">
             <connections>
-                <binding destination="HlQ-Wu-ujW" name="contentArray" keyPath="self.focusedStationItem.stationObject.streams" id="6mB-MG-5xX"/>
+                <binding destination="HlQ-Wu-ujW" name="contentArray" keyPath="focusedStation.streams" id="rKe-N0-gUl"/>
             </connections>
         </arrayController>
     </objects>

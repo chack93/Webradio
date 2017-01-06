@@ -13,37 +13,33 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
     @IBOutlet weak var stationListCollection: NSCollectionView!
     @IBOutlet weak var stationListScrollView: NSScrollView!
     @IBOutlet weak var streamSelectArray: NSArrayController!
+    @IBOutlet weak var stationDetailView: NSView!
     
     // MARK: - Properties
     var stationListManager = StationListManager.init()
-    dynamic var focusedStationItem: StationListItem? {
+    dynamic var focusedStationIndex: Int = -1 {
         didSet {
-            // Select default stream in popup button
-            if let stationObj = self.focusedStationItem?.stationObject {
+            self.focusedStation = self.stationListManager.stations[self.focusedStationIndex]
+        }
+    }
+    dynamic var focusedStation: Station? {
+        didSet {
+            if let stationObj = self.focusedStation {
                 for i in 0..<stationObj.streams.count {
                     if stationObj.streams[i].isDefault {
                         self.focusedStreamIndex = i
                     }
                 }
-                self.focusedStationIndex = stationObj.index
             }
         }
     }
-    var focusedStationIndex = 0 {
-        didSet {
-            let items = self.stationListCollection.visibleItems()
-            for item in items {
-                (item as! StationListItem).setBackground()
-            }
-        }
-    }
-    dynamic var focusedStreamIndex: Int = 0
+    dynamic var focusedStreamIndex: Int = -1
     dynamic var volumeLevel: Float = 1.0 {
         didSet {
             streamPlayer.volumeLevel = volumeLevel
         }
     }
-    var streamPlayer = StreamPlayer()
+    let streamPlayer = StreamPlayer()
     
     // MARK: - ViewController properties/functions
     override var nibName: String? {
@@ -52,17 +48,18 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.stationListCollection.maxNumberOfColumns = 1
+        self.focusedStationIndex = 0
     }
     
     override func viewWillLayout() {
-        // Adjust width of list elements, so that only 1 column can be displayed
-        let scrollViewWidth = self.stationListScrollView.bounds.width
-        if 100 < scrollViewWidth {
-            self.stationListCollection.minItemSize.width = scrollViewWidth
+        let bounds = self.view.bounds
+        if bounds.width < 480 {
+            self.stationDetailView.isHidden = true
         } else {
-            self.stationListCollection.minItemSize.width = 100
+            self.stationDetailView.isHidden = false
         }
-        self.stationListCollection.minItemSize.height = 48
+        self.stationDetailView.needsDisplay = true
     }
     
     // MARK: - NSCollectionViewDataSource protocol
@@ -74,26 +71,20 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
         let item = collectionView.makeItem(withIdentifier: "StationListItem", for: indexPath)
         guard let stationListItem = item as? StationListItem else {return item}
         
+        stationListItem.parentVC = self
         stationListItem.stationObject = self.stationListManager.stations[indexPath.item]
         stationListItem.clickCallback = self.navigateStationList
-        stationListItem.parentVC = self
-        if stationListItem.stationObject!.index == self.focusedStationIndex {
-            self.focusedStationItem = stationListItem
-        }
+        stationListItem.setBackground(focusedStation: self.focusedStationIndex)
         return item
     }
     
     // MARK: - Station list navigation
-    func navigateStationList(_ event: NSEvent, selectedItem: StationListItem) {
+    func navigateStationList(_ event: NSEvent, selectedIndex: Int) {
         switch (event.type) {
         case .leftMouseUp:
-            self.focusedStationItem = selectedItem
-            guard let stationObj = self.focusedStationItem?.stationObject else {
-                Debug.log(level: .Error, file: self.classDescription.className, msg: "Focused station item object missing")
-                return
-            }
-            self.streamPlayer.station = stationObj
+            self.focusedStationIndex = selectedIndex
             if event.clickCount > 1 {
+                self.streamPlayer.station = self.stationListManager.stations[selectedIndex]
                 self.streamPlayer.play()
             }
             break
@@ -107,43 +98,36 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
         if !(sender.objectValue as! Bool) {
             self.streamPlayer.pause()
         } else {
-            guard let stationObj = self.focusedStationItem?.stationObject else {
-                self.streamPlayer.isPlaying = false
-                Debug.log(level: .Error, file: self.classDescription.className, msg: "Focused station item or containing object missing")
-                return
-            }
-            self.streamPlayer.station = stationObj
+            let focusedStation = self.stationListManager.stations[self.focusedStationIndex]
+            self.streamPlayer.station = focusedStation
             self.streamPlayer.play()
         }
     }
-    
     @IBAction func changeDefaultStream(_ sender: NSPopUpButtonCell) {
-        if let streams = self.focusedStationItem?.stationObject?.streams {
-            for i in 0..<streams.count {
-                if i == self.focusedStreamIndex {
-                    streams[i].isDefault = true
-                } else {
-                    streams[i].isDefault = false
-                }
+        let streams = self.stationListManager.stations[self.focusedStationIndex].streams
+        for i in 0..<streams.count {
+            if i == self.focusedStreamIndex {
+                streams[i].isDefault = true
+            } else {
+                streams[i].isDefault = false
             }
+            
         }
     }
     @IBAction func addStation(_ sender: NSButton) {
         let newStation = Station.init(title: "New Station", genre: "Genre", image: nil, streams: [], text: nil, favorite: nil, scheduleItems: nil)
         self.stationListManager.stations.append(newStation)
         self.stationListManager.syncStationIndexes()
-        self.focusedStationIndex = self.stationListManager.stations.count - 1
         self.stationListCollection.reloadData()
+        self.focusedStationIndex = self.stationListManager.stations.count - 1
     }
     @IBAction func removeStation(_ sender: NSButton) {
-        guard let focusedStation = self.focusedStationItem?.stationObject else {
+        if self.focusedStationIndex < 0 {
             return
         }
-        guard let idx = self.stationListManager.stations.index(of: focusedStation) else {
-            return
-        }
-        self.stationListManager.stations.remove(at: idx)
+        self.stationListManager.stations.remove(at: self.focusedStationIndex)
         self.stationListManager.syncStationIndexes()
         self.stationListCollection.reloadData()
+        self.focusedStationIndex = self.focusedStationIndex - 1
     }
 }

@@ -28,28 +28,31 @@ class MainWindowController: NSWindowController {
     
     @IBAction func editStreams(sender: NSButton) {
         let streamsEditWC = StreamDetailWindowController()
-        if let viewController = self.mainViewController, let streams = viewController.focusedStationItem?.stationObject?.streams {
-            streamsEditWC.streamItems = streams
-            self.window!.beginSheet(streamsEditWC.window!, completionHandler: { response in
-                if response == NSModalResponseOK {
-                    let editedStreams = self.streamsEditWC!.streamItems
-                    viewController.focusedStationItem!.stationObject!.streams = editedStreams
-                    // Select default stream in popup button
-                    if let stationObj = viewController.focusedStationItem?.stationObject {
-                        for i in 0..<stationObj.streams.count {
-                            if stationObj.streams[i].isDefault {
-                                viewController.focusedStreamIndex = i
-                            }
-                        }
-                    } else {
-                        Debug.log(level: .Error, file: self.classDescription.className, msg: "focused station item or stationObject missing")
+        guard let viewController = self.mainViewController else {
+            return
+        }
+        let stationFI = viewController.focusedStationIndex
+        let focusedStation = viewController.stationListManager.stations[stationFI]
+        
+        // open sheet
+        streamsEditWC.streamItems = focusedStation.streams
+        self.window!.beginSheet(streamsEditWC.window!, completionHandler: { response in
+            
+            if response == NSModalResponseOK {
+                let editedStreams = self.streamsEditWC!.streamItems
+                focusedStation.streams = editedStreams
+                // Select default stream in popup button
+                for i in 0..<focusedStation.streams.count {
+                    if focusedStation.streams[i].isDefault {
+                        viewController.focusedStreamIndex = i
                     }
                 }
-                self.window!.endSheet(self.streamsEditWC!.window!)
-                
-                self.streamsEditWC = nil
-            })
-            self.streamsEditWC = streamsEditWC
-        }
+            }
+            self.window!.endSheet(self.streamsEditWC!.window!)
+            self.streamsEditWC = nil
+            
+        })
+        self.streamsEditWC = streamsEditWC
+        
     }
 }
