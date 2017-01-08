@@ -20,7 +20,7 @@
             <rect key="contentRect" x="196" y="240" width="552" height="400"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
             <value key="minSize" type="size" width="220" height="270"/>
-            <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
+            <view key="contentView" wantsLayer="YES" id="se5-gp-TjO" customClass="MainView" customModule="Webradio" customModuleProvider="target">
                 <rect key="frame" x="0.0" y="0.0" width="552" height="400"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
@@ -95,7 +95,7 @@ IA
                         <subviews>
                             <customView id="3aO-mR-0Tj">
                                 <rect key="frame" x="0.0" y="0.0" width="220" height="348"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                 <subviews>
                                     <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="F8f-53-emQ">
                                         <rect key="frame" x="0.0" y="21" width="220" height="327"/>
@@ -106,7 +106,7 @@ IA
                                                 <collectionView selectable="YES" allowsEmptySelection="NO" id="ilm-hh-l3n">
                                                     <rect key="frame" x="0.0" y="0.0" width="218" height="325"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <collectionViewGridLayout key="collectionViewLayout" maximumNumberOfColumns="1" id="nY4-4m-aeI">
+                                                    <collectionViewGridLayout key="collectionViewLayout" id="nY4-4m-aeI">
                                                         <size key="minimumItemSize" width="220" height="48"/>
                                                         <size key="maximumItemSize" width="0.0" height="48"/>
                                                     </collectionViewGridLayout>

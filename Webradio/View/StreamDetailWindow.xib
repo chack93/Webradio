@@ -224,7 +224,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </customView>
-                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bjn-KD-S93">
+                    <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="Bjn-KD-S93">
                         <rect key="frame" x="144" y="1" width="72" height="32"/>
                         <buttonCell key="cell" type="push" title="Done" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eYe-GJ-fe8">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -237,6 +237,22 @@ DQ
                             <action selector="closeWindow:" target="-2" id="qCW-gI-hQ8"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xsw-pO-iMj" userLabel="Hidden Esc-key button">
+                        <rect key="frame" x="144" y="1" width="28" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="wgF-BK-7Vx"/>
+                        </constraints>
+                        <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" borderStyle="border" transparent="YES" imageScaling="proportionallyDown" inset="2" id="ye0-jn-pcx">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="closeWindow:" target="-2" id="0hG-Qr-WeA"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="x4q-v2-cQI" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="2ac-0A-rvN"/>
@@ -244,9 +260,12 @@ DQ
                     <constraint firstItem="Sq3-6H-Wu5" firstAttribute="top" secondItem="x4q-v2-cQI" secondAttribute="bottom" constant="-1" id="DSm-7G-vwL"/>
                     <constraint firstAttribute="trailing" secondItem="x4q-v2-cQI" secondAttribute="trailing" constant="20" id="IMK-vE-Uap"/>
                     <constraint firstItem="Sq3-6H-Wu5" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="JsC-Iv-cLh"/>
+                    <constraint firstAttribute="bottom" secondItem="Xsw-pO-iMj" secondAttribute="bottom" constant="8" id="XSr-xP-H0S"/>
                     <constraint firstAttribute="trailing" secondItem="Sq3-6H-Wu5" secondAttribute="trailing" constant="20" id="awm-81-FiX"/>
+                    <constraint firstItem="Xsw-pO-iMj" firstAttribute="top" secondItem="Sq3-6H-Wu5" secondAttribute="bottom" constant="8" id="d6R-H7-S4Y"/>
                     <constraint firstItem="Bjn-KD-S93" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="o4l-Zr-WQ7"/>
                     <constraint firstItem="x4q-v2-cQI" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="pHe-av-r8b"/>
+                    <constraint firstItem="Xsw-pO-iMj" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="150" id="tdw-bB-2Rb"/>
                     <constraint firstItem="Bjn-KD-S93" firstAttribute="top" secondItem="Sq3-6H-Wu5" secondAttribute="bottom" constant="8" id="teC-oa-4bt"/>
                 </constraints>
             </view>

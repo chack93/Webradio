@@ -34,5 +34,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return true
         }
     }
+    
+    @IBAction func saveList(_ sender: NSMenuItem) {
+        guard let mainVC = self.mainWindowController?.mainViewController else { return }
+        mainVC.stationListManager.saveStationList()
+    }
+    
+    @IBAction func importStation(_ sender: NSMenuItem) {
+        guard let mainVC = self.mainWindowController?.mainViewController else { return }
+        let openPanel = NSOpenPanel()
+        let allowedTypes = StationListManager.availableImporter
+        
+        openPanel.prompt = "Choose"
+        openPanel.worksWhenModal = true
+        openPanel.allowsMultipleSelection = true
+        openPanel.canChooseDirectories = false
+        openPanel.canChooseFiles = true
+        openPanel.title = "Choose Playlist file"
+        openPanel.allowedFileTypes = allowedTypes
+        
+        if openPanel.runModal() == NSFileHandlingPanelOKButton {
+            mainVC.addStationsFrom(openPanel.urls)
+        }
+    }
 }
 

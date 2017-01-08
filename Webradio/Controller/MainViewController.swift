@@ -8,6 +8,85 @@
 
 import Cocoa
 
+class MainView: NSView {
+    
+    var drawBorder = false {
+        didSet {
+            self.needsDisplay = true
+        }
+    }
+    
+    override func awakeFromNib() {
+        let draggedTypes = Array.init(arrayLiteral: NSFilenamesPboardType)
+        
+        
+        /*["public.text",
+         "public.plain-text",
+         "public.xml"]
+         */
+        self.register(forDraggedTypes: draggedTypes)
+    }
+    
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
+        if self.drawBorder {
+            NSBezierPath.setDefaultLineWidth(5.0)
+            NSColor.keyboardFocusIndicatorColor.set()
+            NSBezierPath.stroke(dirtyRect)
+        }
+    }
+    
+    // MARK: - Drag & Drop
+    
+    var dropCallback: (([URL]) -> Void)?
+    
+    override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {
+        let pasteboard = sender.draggingPasteboard()
+        guard let paths = pasteboard.propertyList(forType: NSFilenamesPboardType) as? [String] else {
+            return []
+        }
+        for path in paths {
+            guard let ext = path.components(separatedBy: ".").last else {
+                continue
+            }
+            if StationListManager.availableImporter.contains(ext.lowercased()) {
+                self.drawBorder = true
+                return NSDragOperation.every
+            }
+        }
+        self.drawBorder = false
+        return []
+    }
+    
+    override func draggingExited(_ sender: NSDraggingInfo?) {
+        self.drawBorder = false
+    }
+    
+    override func prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
+        return true
+    }
+    
+    override func performDragOperation(_ sender: NSDraggingInfo) -> Bool {
+        self.drawBorder = false
+        return true
+    }
+    
+    override func concludeDragOperation(_ sender: NSDraggingInfo?) {
+        self.drawBorder = false
+        guard var paths = sender?.draggingPasteboard().propertyList(forType: NSFilenamesPboardType) as? [String] else {
+            return
+        }
+        var urls = [URL]()
+        for i in 0..<paths.count {
+            //paths[i] = "file://" + paths[i]
+            urls.append(URL.init(fileURLWithPath: paths[i]))
+        }
+        if paths.count > 0 && self.dropCallback != nil {
+            self.dropCallback!(urls)
+        }
+    }
+}
+
 class MainViewController: NSViewController, NSCollectionViewDataSource {
     // MARK: - Outlets
     @IBOutlet weak var stationListCollection: NSCollectionView!
@@ -19,7 +98,12 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
     var stationListManager = StationListManager.init()
     dynamic var focusedStationIndex: Int = -1 {
         didSet {
-            self.focusedStation = self.stationListManager.stations[self.focusedStationIndex]
+            if self.focusedStationIndex < 0 ||
+                self.focusedStationIndex > self.stationListManager.stations.count - 1 {
+                self.focusedStation = nil
+            } else {
+                self.focusedStation = self.stationListManager.stations[self.focusedStationIndex]
+            }
         }
     }
     dynamic var focusedStation: Station? {
@@ -50,6 +134,8 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
         super.viewDidLoad()
         self.stationListCollection.maxNumberOfColumns = 1
         self.focusedStationIndex = 0
+        guard let mainView = self.view as? MainView else { return }
+        mainView.dropCallback = self.addStationsFrom
     }
     
     override func viewWillLayout() {
@@ -60,6 +146,22 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
             self.stationDetailView.isHidden = false
         }
         self.stationDetailView.needsDisplay = true
+    }
+    
+    /// Creates & appends stations/streams from given filepaths
+    func addStationsFrom(_ filePaths: [URL]) {
+        var stations = [Station]()
+        for path in filePaths {
+            if StationListManager.availableImporter.contains(path.pathExtension) {
+                guard let stationsInFile = StationListManager.stationFrom(file: path) else { continue }
+                stations.append(contentsOf: stationsInFile)
+            }
+        }
+        if stations.count > 0 {
+            self.stationListManager.stations.append(contentsOf: stations)
+            self.stationListCollection.reloadData()
+            self.focusedStationIndex = self.stationListManager.stations.count - 1
+        }
     }
     
     // MARK: - NSCollectionViewDataSource protocol
@@ -117,7 +219,6 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
     @IBAction func addStation(_ sender: NSButton) {
         let newStation = Station.init(title: "New Station", genre: "Genre", image: nil, streams: [], text: nil, favorite: nil, scheduleItems: nil)
         self.stationListManager.stations.append(newStation)
-        self.stationListManager.syncStationIndexes()
         self.stationListCollection.reloadData()
         self.focusedStationIndex = self.stationListManager.stations.count - 1
     }
@@ -126,7 +227,6 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
             return
         }
         self.stationListManager.stations.remove(at: self.focusedStationIndex)
-        self.stationListManager.syncStationIndexes()
         self.stationListCollection.reloadData()
         self.focusedStationIndex = self.focusedStationIndex - 1
     }

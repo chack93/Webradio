@@ -46,7 +46,11 @@ class StationListManager: NSCoder {
     // - MARK: properties
     
     /// List of all saved stations
-    var stations = [Station]()
+    var stations = [Station]() {
+        didSet {
+            self.checkStations()
+        }
+    }
     var favoriteStations: [Station] {
         get {
             var returnValue = [Station]()
@@ -95,7 +99,7 @@ class StationListManager: NSCoder {
             Debug.log(level: .Error, file: self.classDescription.className, msg: "Unable to unarchive station list")
             return
         }
-        self.syncStationIndexes()
+        self.checkStations()
     }
     
     /// Write current station list to file
@@ -130,13 +134,47 @@ class StationListManager: NSCoder {
     }
     
     /// sync index property in each station with array index
-    func syncStationIndexes() {
+    private func checkStations() {
+        var defaultFound = false
         for i in 0..<self.stations.count {
             self.stations[i].index = i
+            defaultFound = false
+            for stream in self.stations[i].streams {
+                if stream.isDefault {
+                    defaultFound = true
+                    break
+                }
+            }
+            if !defaultFound && self.stations[i].streams.count > 0 {
+                self.stations[i].streams[0].isDefault = true
+            }
         }
     }
     
     // - MARK: Playlist import functions
+    
+    class var availableImporter: [String] {
+        return ["m3u",
+                "m3u8"]
+        /* upcomming
+         "pls",
+         "xspf"]
+         */
+    }
+    
+    class func stationFrom(file: URL) -> [Station]? {
+        let fileExt = file.pathExtension
+        switch fileExt.lowercased() {
+        case "m3u", "m3u8":
+            return StationListManager.stationFrom(m3u: file)
+        case "pls":
+            return nil
+        case "xspf":
+            return nil
+        default:
+            return nil
+        }
+    }
     
     /** Creates a station object from a m3u playlist
      - parameters:
