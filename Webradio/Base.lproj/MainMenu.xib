@@ -114,7 +114,11 @@
                                     <action selector="importStation:" target="Voe-Tx-rLC" id="iPL-DO-mli"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Export Playlist" hidden="YES" keyEquivalent="e" id="oNS-ym-DYL"/>
+                            <menuItem title="Export Playlist" keyEquivalent="e" id="oNS-ym-DYL">
+                                <connections>
+                                    <action selector="exportStation:" target="Voe-Tx-rLC" id="QoR-DL-xqT"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>

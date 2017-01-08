@@ -153,6 +153,7 @@ class StationListManager: NSCoder {
     
     // - MARK: Playlist import functions
     
+    /// List of all supported playlist interpreter
     class var availableImporter: [String] {
         return ["m3u",
                 "m3u8"]
@@ -162,6 +163,11 @@ class StationListManager: NSCoder {
          */
     }
     
+    /** Creates a station object from given playlist
+     - parameters:
+     - file: path to playlist file, extension of path selects importer
+     - returns: A station list, or nil if the playlist can not be read
+     */
     class func stationFrom(file: URL) -> [Station]? {
         let fileExt = file.pathExtension
         switch fileExt.lowercased() {
@@ -173,6 +179,25 @@ class StationListManager: NSCoder {
             return nil
         default:
             return nil
+        }
+    }
+    
+    /** Creates a playlist from given stations array
+     - parameters:
+     - stations: stations that will be exported
+     - ofType: file extension of the playlist that should be created
+     - returns: The created playlist as a String that can be written to a file
+     */
+    class func createPlaylistFrom(_ stations: [Station], ofType: String) -> String {
+        switch ofType.lowercased() {
+        case "m3u", "m3u8":
+            return StationListManager.m3uPlaylistFrom(stations)
+        case "pls":
+            return ""
+        case "xspf":
+            return ""
+        default:
+            return ""
         }
     }
     
@@ -237,5 +262,15 @@ class StationListManager: NSCoder {
             return nil
         }
         return stations
+    }
+    
+    /** Creates a m3u playlist from given stations array
+     - parameters:
+     - stations: stations that will be exported
+     - returns: The created playlist as a String that can be written to a file
+     */
+    class func m3uPlaylistFrom(_ stations: [Station]) -> String{
+        
+        return ""
     }
 }

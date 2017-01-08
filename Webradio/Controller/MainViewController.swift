@@ -18,12 +18,6 @@ class MainView: NSView {
     
     override func awakeFromNib() {
         let draggedTypes = Array.init(arrayLiteral: NSFilenamesPboardType)
-        
-        
-        /*["public.text",
-         "public.plain-text",
-         "public.xml"]
-         */
         self.register(forDraggedTypes: draggedTypes)
     }
     
@@ -93,6 +87,7 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
     @IBOutlet weak var stationListScrollView: NSScrollView!
     @IBOutlet weak var streamSelectArray: NSArrayController!
     @IBOutlet weak var stationDetailView: NSView!
+    @IBOutlet weak var mainWindow: NSWindow!
     
     // MARK: - Properties
     var stationListManager = StationListManager.init()
@@ -148,7 +143,10 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
         self.stationDetailView.needsDisplay = true
     }
     
-    /// Creates & appends stations/streams from given filepaths
+    /** Creates & appends stations/streams from given filepaths
+     - parameters:
+     - filePaths: URLs to read from
+    */
     func addStationsFrom(_ filePaths: [URL]) {
         var stations = [Station]()
         for path in filePaths {
@@ -161,6 +159,23 @@ class MainViewController: NSViewController, NSCollectionViewDataSource {
             self.stationListManager.stations.append(contentsOf: stations)
             self.stationListCollection.reloadData()
             self.focusedStationIndex = self.stationListManager.stations.count - 1
+        }
+    }
+    
+    /** Creates playlist of all saved stations & saves it given path. File extension of path defines playlist type
+     - parameters:
+     - path: Path where the created playlist will be saved
+     */
+    func exportPlaylist(_ path: URL) {
+        let stations = self.stationListManager.stations
+        if stations.count < 1 { return }
+        
+        let exportString = StationListManager.createPlaylistFrom(stations, ofType: "m3u")
+        do {
+            try exportString.write(to: path, atomically: true, encoding: String.Encoding.utf8)
+        } catch {
+            Debug.log(level: .Error, file: "MainViewController", msg: "Unable to write playlist to file")
+            self.mainWindow.presentError(error)
         }
     }
     

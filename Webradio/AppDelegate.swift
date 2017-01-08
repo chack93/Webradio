@@ -10,15 +10,15 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
+    
     var mainWindowController: MainWindowController?
-
+    
     func applicationDidFinishLaunching(_ notification: Notification) {
         let mainWindowController = MainWindowController()
         mainWindowController.showWindow(self)
         self.mainWindowController = mainWindowController
     }
-
+    
     func applicationWillTerminate(_ aNotification: Notification) {
         self.mainWindowController!.prepareClosing()
     }
@@ -42,6 +42,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func importStation(_ sender: NSMenuItem) {
         guard let mainVC = self.mainWindowController?.mainViewController else { return }
+        guard let mainWindow = self.mainWindowController?.window else { return }
         let openPanel = NSOpenPanel()
         let allowedTypes = StationListManager.availableImporter
         
@@ -53,9 +54,35 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         openPanel.title = "Choose Playlist file"
         openPanel.allowedFileTypes = allowedTypes
         
-        if openPanel.runModal() == NSFileHandlingPanelOKButton {
-            mainVC.addStationsFrom(openPanel.urls)
-        }
+        openPanel.beginSheetModal(for: mainWindow, completionHandler: {(response: Int) -> Void in
+            if response == NSModalResponseOK {
+                mainVC.addStationsFrom(openPanel.urls)
+            }
+        })
+    }
+    @IBAction func exportStation(_ sender: NSMenuItem) {
+        guard let mainVC = self.mainWindowController?.mainViewController else { return }
+        guard let mainWindow = self.mainWindowController?.window else { return }
+        let savePanel = NSSavePanel()
+        let allowedTypes = StationListManager.availableImporter
+        
+        savePanel.title = "Save"
+        savePanel.prompt = "Save"
+        savePanel.canCreateDirectories = true
+        savePanel.isExtensionHidden = false
+        savePanel.directoryURL = FileManager.default.homeDirectoryForCurrentUser
+        savePanel.allowedFileTypes = allowedTypes
+        savePanel.nameFieldStringValue = "Untitled." + allowedTypes.last!
+        savePanel.allowsOtherFileTypes = false
+        savePanel.treatsFilePackagesAsDirectories = false
+        
+        savePanel.beginSheetModal(for: mainWindow, completionHandler: {(response: Int) -> Void in
+            if response == NSModalResponseOK {
+                if savePanel.url != nil {
+                    mainVC.exportPlaylist(savePanel.url!)
+                }
+            }
+        })
     }
 }
 

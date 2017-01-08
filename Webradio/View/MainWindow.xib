@@ -444,6 +444,7 @@ IA
         </window>
         <viewController id="HlQ-Wu-ujW" customClass="MainViewController" customModule="Webradio" customModuleProvider="target">
             <connections>
+                <outlet property="mainWindow" destination="F0z-JX-Cv5" id="Qht-co-CAo"/>
                 <outlet property="stationDetailView" destination="Z9d-NZ-KGg" id="CG0-pF-jCl"/>
                 <outlet property="stationListCollection" destination="ilm-hh-l3n" id="aDP-a8-frh"/>
                 <outlet property="stationListScrollView" destination="F8f-53-emQ" id="WsF-GO-ngf"/>
