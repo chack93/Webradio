@@ -270,7 +270,20 @@ class StationListManager: NSCoder {
      - returns: The created playlist as a String that can be written to a file
      */
     class func m3uPlaylistFrom(_ stations: [Station]) -> String{
-        
-        return ""
+        if stations.count < 1 {
+            return ""
+        }
+        var playlist = "#EXTM3U"
+        for station in stations {
+            for stream in station.streams {
+                if stream.title.characters.count > 0 {
+                    playlist += "\n#EXTINF:-1," + station.title + " - " + stream.title + "\n"
+                } else {
+                    playlist += "\n#EXTINF:-1," + station.title + "\n"
+                }
+                playlist += stream.stream
+            }
+        }
+        return playlist
     }
 }

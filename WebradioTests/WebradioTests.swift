@@ -22,7 +22,7 @@ class WebradioTests: XCTestCase {
         super.tearDown()
     }
     
-    // - MARK: helper functions 
+    // - MARK: helper functions
     
     func playlistPathOf(file: String) -> URL? {
         let testfileFolderName = "testfiles"
@@ -68,13 +68,13 @@ class WebradioTests: XCTestCase {
     func testOpenSimpleM3U() {
         let streamItem = StreamItem.init(stream: "http://detektor.fm/stream/mp3/wort/")
         let correctStations: [Station] = [
-        Station.init(title: nil,
-                     genre: nil,
-                     image: nil,
-                     streams: [streamItem],
-                     text: nil,
-                     favorite: nil,
-                     scheduleItems: nil)]
+            Station.init(title: nil,
+                         genre: nil,
+                         image: nil,
+                         streams: [streamItem],
+                         text: nil,
+                         favorite: nil,
+                         scheduleItems: nil)]
         let fileName = "tf_simple.m3u"
         
         if let playlistPath = self.playlistPathOf(file: fileName) {
@@ -124,6 +124,32 @@ class WebradioTests: XCTestCase {
             XCTAssertNotNil(newStations, "created station is empty")
             self.compare(newStations: newStations!, correctStations: correctStations, file: fileName)
         }
+    }
+    
+    func testExportM3U() {
+        let correctPlaylist = "#EXTM3U\n#EXTINF:-1,Detektor.fm Wortstream - MP3\nhttp://detektor.fm/stream/mp3/wort/\n#EXTINF:-1,Radio Swiss Jazz - AAC\nhttp://stream.srg-ssr.ch/m/rsj/aacp_96"
+        let streamItem1 = StreamItem.init(stream: "http://detektor.fm/stream/mp3/wort/", title: "MP3")
+        let testStations1 =
+            Station.init(title: "Detektor.fm Wortstream",
+                         genre: nil,
+                         image: nil,
+                         streams: [streamItem1],
+                         text: nil,
+                         favorite: nil,
+                         scheduleItems: nil)
+        //
+        let streamItem2 = StreamItem.init(stream: "http://stream.srg-ssr.ch/m/rsj/aacp_96", title: "AAC")
+        let testStations2 =
+            Station.init(title: "Radio Swiss Jazz",
+                         genre: nil,
+                         image: nil,
+                         streams: [streamItem2],
+                         text: nil,
+                         favorite: nil,
+                         scheduleItems: nil)
+        let exportetPlaylist = StationListManager.createPlaylistFrom([testStations1, testStations2], ofType: "m3u")
+        XCTAssertEqual(correctPlaylist, exportetPlaylist, "m3u playlist is wrong")
+        print("\n\n" + correctPlaylist + "\n" + exportetPlaylist + "\n\n")
     }
     
     func testPerformanceExample() {
